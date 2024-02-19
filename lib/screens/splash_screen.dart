@@ -35,7 +35,9 @@ class SplashScreen extends StatelessWidget {
               ),
               GradientButton(
                 buttonText: "Try me",
-                onClick: () {},
+                onClick: () {
+                  Navigator.pushNamed(context, "/permission");
+                },
               ),
             ],
           ),
