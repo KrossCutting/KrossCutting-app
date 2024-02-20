@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isCoachMarkDisplayed = true;
 
-  void _hideCoachMark() {
+  void hideCoachMark() {
     setState(() {
       _isCoachMarkDisplayed = false;
     });
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   offset: const Offset(0, -40),
                   child: const Column(
                     children: [
-                      GradientButton(
+                      HomeButton(
                         buttonText: "Vertical",
                         colorStyle: "purple",
                         isCoachMark: false,
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: 40,
                       ),
-                      GradientButton(
+                      HomeButton(
                         buttonText: "Horizontal",
                         colorStyle: "yellow",
                         isCoachMark: false,
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           if (_isCoachMarkDisplayed)
             HomeCoachMark(
-              onSkip: _hideCoachMark,
+              onSkip: hideCoachMark,
             ),
         ],
       ),

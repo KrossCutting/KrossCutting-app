@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:krosscutting_app/screens/home_page/home_button.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
 
@@ -76,7 +74,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
                 color: Colors.white,
               ),
             ),
-            GradientButton(
+            HomeButton(
               buttonText: "Vertical",
               colorStyle: "purple",
               isCoachMark: true,
@@ -113,7 +111,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
                 color: Colors.white,
               ),
             ),
-            GradientButton(
+            HomeButton(
               buttonText: "Horizontal",
               colorStyle: "yellow",
               isCoachMark: true,
