@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/intro.gif"),
+          image: AssetImage("assets/images/intro.gif"),
           fit: BoxFit.cover,
           opacity: 0.4,
         ),
@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Image(
-                image: AssetImage("assets/logo_square.png"),
+                image: AssetImage("assets/images/logo_square.png"),
                 width: 500,
                 height: 500,
               ),
@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
               GradientButton(
                 buttonText: "Try me",
                 onClick: () {
-                  Navigator.pushNamed(context, "/permission");
+                  Navigator.pushNamed(context, "/home");
                 },
               ),
             ],
