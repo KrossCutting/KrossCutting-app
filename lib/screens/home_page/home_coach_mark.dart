@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krosscutting_app/constants/button_type.dart';
 import 'package:krosscutting_app/screens/home_page/home_button.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
 
@@ -78,6 +79,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               buttonText: "Vertical",
               colorStyle: "purple",
               isCoachMark: true,
+              type: ButtonType.vertical,
             ),
           ],
         ),
@@ -115,6 +117,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               buttonText: "Horizontal",
               colorStyle: "yellow",
               isCoachMark: true,
+              type: ButtonType.horizontal,
             ),
           ],
         ),

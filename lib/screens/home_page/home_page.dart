@@ -3,6 +3,8 @@ import 'package:krosscutting_app/screens/home_page/home_button.dart';
 import 'package:krosscutting_app/screens/home_page/home_carousel.dart';
 import 'package:krosscutting_app/screens/home_page/home_coach_mark.dart';
 
+import 'package:krosscutting_app/constants/button_type.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -80,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         buttonText: "Vertical",
                         colorStyle: "purple",
                         isCoachMark: false,
+                        type: ButtonType.vertical,
                       ),
                       SizedBox(
                         height: 40,
@@ -88,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         buttonText: "Horizontal",
                         colorStyle: "yellow",
                         isCoachMark: false,
+                        type: ButtonType.horizontal,
                       ),
                     ],
                   ),
