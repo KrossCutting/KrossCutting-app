@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AlbumScreen extends StatefulWidget {
   const AlbumScreen({super.key});
@@ -10,6 +11,7 @@ class AlbumScreen extends StatefulWidget {
 
 class _AlbumScreenState extends State<AlbumScreen> {
   bool hasPermission = false;
+  XFile? file;
 
   @override
   void initState() {
@@ -47,6 +49,17 @@ class _AlbumScreenState extends State<AlbumScreen> {
         hasPermission = true;
       });
     }
+  }
+
+  Future<void> _pickXFiles() async {
+    ImagePicker().pickVideo(source: ImageSource.gallery).then((video) => {
+          if (video != null)
+            {
+              setState(() {
+                file = video;
+              })
+            }
+        });
   }
 
   @override
@@ -87,7 +100,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
                               size: 40,
                               Icons.video_collection_rounded,
                             ),
-                            onPressed: () {},
+                            onPressed: _pickXFiles,
                           )
                         : const SizedBox(
                             height: 40,
