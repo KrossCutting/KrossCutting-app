@@ -71,22 +71,43 @@ class _AlbumScreenState extends State<AlbumScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Album",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    Icon(
-                      Icons.video_collection_rounded,
-                      size: 30,
-                    ),
+                    hasPermission
+                        ? IconButton(
+                            icon: const Icon(
+                              size: 40,
+                              Icons.video_collection_rounded,
+                            ),
+                            onPressed: () {},
+                          )
+                        : const SizedBox(
+                            height: 40,
+                            width: 40,
+                          ),
                   ],
                 ),
                 hasPermission
-                    ? const Text("앨범위젯")
+                    ? const Padding(
+                        padding: EdgeInsets.only(
+                          top: 180,
+                        ),
+                        child: Text(
+                          "Welcome to KrossCutting!",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontFamily: "noteSansItalic",
+                          ),
+                        ),
+                      )
                     : Center(
                         child: GrantButton(
                           onClickGrantButton: onClickGrantButton,
@@ -111,38 +132,48 @@ class GrantButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(45),
-        border: const Border(
-          top: BorderSide(
-            color: Colors.purple,
-            width: 2.0,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(
+          height: 100,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(45),
+            border: const Border(
+              top: BorderSide(
+                color: Colors.purple,
+                width: 2.0,
+              ),
+              bottom: BorderSide(
+                color: Colors.purple,
+                width: 2.0,
+              ),
+              left: BorderSide(
+                color: Colors.purple,
+                width: 2.0,
+              ),
+              right: BorderSide(
+                color: Colors.purple,
+                width: 2.0,
+              ),
+            ),
           ),
-          bottom: BorderSide(
-            color: Colors.purple,
-            width: 2.0,
-          ),
-          left: BorderSide(
-            color: Colors.purple,
-            width: 2.0,
-          ),
-          right: BorderSide(
-            color: Colors.purple,
-            width: 2.0,
+          child: TextButton(
+            onPressed: onClickGrantButton,
+            child: const Text(
+              "Get Permission",
+              style: TextStyle(
+                fontSize: 30,
+                fontFamily: "noteSansItalic",
+              ),
+            ),
           ),
         ),
-      ),
-      child: TextButton(
-        onPressed: onClickGrantButton,
-        child: const Text(
-          "권한 받기",
-          style: TextStyle(
-            fontSize: 30,
-          ),
-        ),
-      ),
+      ],
     );
   }
 }
