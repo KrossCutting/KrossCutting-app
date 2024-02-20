@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:krosscutting_app/screens/album_screen.dart';
+import 'package:krosscutting_app/screens/home_page/home_page.dart';
 import 'package:krosscutting_app/screens/splash_screen.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class App extends StatelessWidget {
       routes: {
         "/": (context) => const SplashScreen(),
         "/album": (context) => const AlbumScreen(),
+        "/home": (context) => const HomeScreen(),
       },
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(
