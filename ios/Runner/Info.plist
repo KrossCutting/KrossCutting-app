@@ -41,6 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+<!-- Permission options for the `photos` group -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>AccessToThePhotoLibraryIsRequiredForVideoCreation</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
