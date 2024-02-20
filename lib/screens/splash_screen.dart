@@ -1,45 +1,56 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:krosscutting_app/widgets/gradient_button.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({
+    super.key,
+  });
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  static const splashSeconds = 3;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(
+        const Duration(
+          seconds: splashSeconds,
+        ), () {
+      Navigator.pushNamed(
+        context,
+        "/album",
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/intro.gif"),
+          image: AssetImage("assets/images/intro.gif"),
           fit: BoxFit.cover,
           opacity: 0.4,
         ),
       ),
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Colors.transparent,
         body: Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 50,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Image(
-                image: AssetImage("assets/logo_square.png"),
-                width: 500,
-                height: 500,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              GradientButton(
-                buttonText: "Try me",
-                onClick: () {
-                  Navigator.pushNamed(context, "/permission");
-                },
-              ),
-            ],
+          child: Align(
+            alignment: Alignment.center,
+            child: Image(
+              image: AssetImage("assets/images/logo_square.png"),
+              width: 500,
+              height: 500,
+            ),
           ),
         ),
       ),
