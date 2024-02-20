@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class AlbumScreen extends StatefulWidget {
   const AlbumScreen({super.key});
@@ -8,6 +9,46 @@ class AlbumScreen extends StatefulWidget {
 }
 
 class _AlbumScreenState extends State<AlbumScreen> {
+  bool hasPermission = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _checkInitPermission();
+  }
+
+  Future<void> _checkInitPermission() async {
+    PermissionStatus currentStatus = await Permission.photos.status;
+
+    if (currentStatus.isGranted || currentStatus.isLimited) {
+      setState(() {
+        hasPermission = true;
+      });
+    } else {
+      await Permission.photos.request();
+      PermissionStatus currentStatus = await Permission.photos.status;
+
+      if (currentStatus.isGranted || currentStatus.isLimited) {
+        setState(() {
+          hasPermission = true;
+        });
+      }
+    }
+  }
+
+  void onClickGrantButton() async {
+    openAppSettings();
+
+    PermissionStatus newStatus = await Permission.photos.status;
+
+    if (newStatus.isGranted || newStatus.isLimited) {
+      setState(() {
+        hasPermission = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -44,8 +85,61 @@ class _AlbumScreenState extends State<AlbumScreen> {
                     ),
                   ],
                 ),
+                hasPermission
+                    ? const Text("앨범위젯")
+                    : Center(
+                        child: GrantButton(
+                          onClickGrantButton: onClickGrantButton,
+                        ),
+                      ),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class GrantButton extends StatelessWidget {
+  final Function()? onClickGrantButton;
+
+  const GrantButton({
+    super.key,
+    this.onClickGrantButton,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(45),
+        border: const Border(
+          top: BorderSide(
+            color: Colors.purple,
+            width: 2.0,
+          ),
+          bottom: BorderSide(
+            color: Colors.purple,
+            width: 2.0,
+          ),
+          left: BorderSide(
+            color: Colors.purple,
+            width: 2.0,
+          ),
+          right: BorderSide(
+            color: Colors.purple,
+            width: 2.0,
+          ),
+        ),
+      ),
+      child: TextButton(
+        onPressed: onClickGrantButton,
+        child: const Text(
+          "권한 받기",
+          style: TextStyle(
+            fontSize: 30,
           ),
         ),
       ),
