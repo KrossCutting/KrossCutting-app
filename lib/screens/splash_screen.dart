@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ), () {
       Navigator.pushNamed(
         context,
-        "/album",
+        "/home",
       );
     });
   }
