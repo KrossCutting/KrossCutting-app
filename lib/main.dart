@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/screens/permission_screen.dart';
+import 'package:krosscutting_app/screens/album_screen.dart';
 import 'package:krosscutting_app/screens/splash_screen.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
-        "/permission": (context) => const PermissionScreen(),
+        "/album": (context) => const AlbumScreen(),
       },
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(

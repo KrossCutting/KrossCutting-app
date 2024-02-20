@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class PermissionScreen extends StatefulWidget {
-  const PermissionScreen({super.key});
+class AlbumScreen extends StatefulWidget {
+  const AlbumScreen({super.key});
 
   @override
-  State<PermissionScreen> createState() => _PermissionScreenState();
+  State<AlbumScreen> createState() => _AlbumScreenState();
 }
 
-class _PermissionScreenState extends State<PermissionScreen> {
+class _AlbumScreenState extends State<AlbumScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
         child: Text(
-          "Permission Page",
+          "Album Page",
           style: TextStyle(
             fontSize: 30,
           ),
