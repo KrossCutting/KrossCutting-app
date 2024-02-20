@@ -14,7 +14,6 @@ class HomeButton extends StatelessWidget {
 
   void onClick() {
 // To Do. 버튼 클릭시 전역 상태에 비디오 타입 전달 후 갤러리 선택 페이지로 이동 기능
-    return;
   }
 
   @override
