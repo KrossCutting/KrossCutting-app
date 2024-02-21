@@ -21,7 +21,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "KrossCutting",
-      initialRoute: "/progress",
+      initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
         "/permission": (context) => const PermissionScreen(),
