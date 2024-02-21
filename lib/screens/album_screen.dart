@@ -68,22 +68,32 @@ class _AlbumScreenState extends State<AlbumScreen> {
               children: [
                 Image(
                   image: const AssetImage("assets/images/logo_square.png"),
-                  height: screenSize.height * 0.15,
+                  height: screenSize.height * 0.2,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: screenSize.height * 0.1,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Album",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Choose videos",
+                        style: TextStyle(
+                          fontSize: screenSize.height * 0.04,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                       width: 40,
                     ),
