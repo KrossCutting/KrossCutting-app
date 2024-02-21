@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/constants/button_type.dart';
+import 'package:krosscutting_app/constants/type.dart';
 import 'package:krosscutting_app/screens/home_page/home_button.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
 

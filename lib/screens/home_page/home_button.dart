@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/constants/button_type.dart';
+import 'package:krosscutting_app/constants/type.dart';
 
 class HomeButton extends StatelessWidget {
   final String buttonText;
