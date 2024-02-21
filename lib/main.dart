@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:krosscutting_app/provider/video_path_provider.dart';
-
 import 'package:krosscutting_app/screens/album_screen.dart';
 import 'package:krosscutting_app/screens/home_page/home_page.dart';
 import 'package:krosscutting_app/screens/splash_screen.dart';
