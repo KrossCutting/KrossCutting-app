@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/widgets/Imbedded_album.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:image_picker/image_picker.dart';
+
+import 'package:krosscutting_app/widgets/imbedded_album.dart';
 
 class AlbumScreen extends StatefulWidget {
   const AlbumScreen({super.key});
@@ -12,15 +12,12 @@ class AlbumScreen extends StatefulWidget {
 
 class _AlbumScreenState extends State<AlbumScreen> {
   bool hasPermission = false;
-  bool isFull = false;
-  late List<String> videoPaths = [];
 
   @override
   void initState() {
     super.initState();
 
     _checkInitPermission();
-    isFull = videoPaths.length >= 3 ? true : false;
   }
 
   Future<void> _checkInitPermission() async {
@@ -54,25 +51,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
     }
   }
 
-  Future<void> _pickXFiles() async {
-    if (isFull) {
-      return;
-    }
-
-    XFile? selectedVideo =
-        await ImagePicker().pickVideo(source: ImageSource.gallery);
-
-    if (selectedVideo != null) {
-      String videoPath = selectedVideo.path;
-
-      setState(() {
-        videoPaths.add(videoPath);
-
-        isFull = videoPaths.length >= 3 ? true : false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -95,62 +73,24 @@ class _AlbumScreenState extends State<AlbumScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Album",
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    hasPermission
-                        ? IconButton(
-                            icon: const Icon(
-                              size: 40,
-                              Icons.video_collection_rounded,
-                            ),
-                            onPressed: _pickXFiles,
-                          )
-                        : const SizedBox(
-                            height: 40,
-                            width: 40,
-                          ),
+                    SizedBox(
+                      height: 40,
+                      width: 40,
+                    ),
                   ],
                 ),
-                isFull
-                    ? const SizedBox(
-                        child: Text(
-                          "You have already selected 3 or more videos",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: "notoSansItalic",
-                            fontWeight: FontWeight.w800,
-                            color: Color.fromARGB(255, 104, 224, 210),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(
-                        height: 18,
-                      ),
                 hasPermission
-                    ? videoPaths.isEmpty
-                        ? const Padding(
-                            padding: EdgeInsets.only(
-                              top: 200,
-                            ),
-                            child: Text(
-                              "Welcome to KrossCutting!",
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontFamily: "notoSansItalic",
-                              ),
-                            ),
-                          )
-                        : Expanded(
-                            child: ImbeddedAlbum(videoPathList: videoPaths),
-                          )
+                    ? const ImbeddedAlbum()
                     : Center(
                         child: GrantButton(
                           onClickGrantButton: onClickGrantButton,
