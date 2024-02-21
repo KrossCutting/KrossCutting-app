@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/screens/home_page/home_button.dart';
-import 'package:krosscutting_app/screens/home_page/home_carousel.dart';
-import 'package:krosscutting_app/screens/home_page/home_coach_mark.dart';
+import 'package:krosscutting_app/screens/home_screen/home_button.dart';
+import 'package:krosscutting_app/screens/home_screen/home_carousel.dart';
+import 'package:krosscutting_app/screens/home_screen/home_coach_mark.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
