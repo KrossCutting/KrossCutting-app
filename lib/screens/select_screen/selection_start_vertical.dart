@@ -26,7 +26,7 @@ class _SelectionStartVerticalState extends State<SelectionStartVertical> {
 
   Future<void> _initPlayer() async {
     _videoPlayerController =
-        VideoPlayerController.asset("assets/vidoes/aespaVertical_One.mp4");
+        VideoPlayerController.asset("assets/videos/aespaVertical_One.mp4");
     await _videoPlayerController.initialize();
     _createChewieController();
     setState(() {});

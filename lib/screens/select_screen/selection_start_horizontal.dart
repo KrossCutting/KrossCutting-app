@@ -27,7 +27,7 @@ class _SelectionStartHorizontalState extends State<SelectionStartHorizontal> {
 
   Future<void> _initPlayer() async {
     _videoPlayerController =
-        VideoPlayerController.asset("assets/vidoes/aespaOne_1min.mp4");
+        VideoPlayerController.asset("assets/videos/aespaOne_1min.mp4");
     await _videoPlayerController.initialize();
     _createChewieController();
     setState(() {});

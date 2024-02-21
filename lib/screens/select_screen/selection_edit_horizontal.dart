@@ -26,7 +26,7 @@ class _SelectionHorizontalState extends State<SelectionHorizontal> {
 
   Future<void> _initPlayer() async {
     _videoPlayerController =
-        VideoPlayerController.asset("assets/vidoes/aespaOne_1min.mp4");
+        VideoPlayerController.asset("assets/videos/aespaOne_1min.mp4");
 
     await _videoPlayerController.initialize();
 
