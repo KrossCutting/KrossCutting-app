@@ -67,11 +67,11 @@ class _ProgressScreenState extends State<ProgressScreen> {
         width: 15,
       ),
     ];
-    for (int i = 0; i < 4; i++) {
+    for (int index = 0; index < 4; index += 1) {
       widgets.add(
-        _cutImage(i < _currentStep),
+        _cutImage(index < _currentStep),
       );
-      if (i < 4) {
+      if (index < 4) {
         widgets.add(
           const SizedBox(width: 15),
         );
