@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krosscutting_app/widgets/Imbedded_album.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -11,15 +12,19 @@ class AlbumScreen extends StatefulWidget {
 
 class _AlbumScreenState extends State<AlbumScreen> {
   bool hasPermission = false;
-  XFile? file;
+  bool isFull = false;
+  late List<String> videoPaths = [];
 
+//init State
   @override
   void initState() {
     super.initState();
 
     _checkInitPermission();
+    isFull = videoPaths.length >= 3 ? true : false;
   }
 
+//checkPermission
   Future<void> _checkInitPermission() async {
     PermissionStatus currentStatus = await Permission.photos.status;
 
@@ -39,6 +44,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
     }
   }
 
+//Grant button click
   void onClickGrantButton() async {
     openAppSettings();
 
@@ -52,14 +58,22 @@ class _AlbumScreenState extends State<AlbumScreen> {
   }
 
   Future<void> _pickXFiles() async {
-    ImagePicker().pickVideo(source: ImageSource.gallery).then((video) => {
-          if (video != null)
-            {
-              setState(() {
-                file = video;
-              })
-            }
-        });
+    if (isFull) {
+      return;
+    }
+
+    XFile? selectedVideo =
+        await ImagePicker().pickVideo(source: ImageSource.gallery);
+
+    if (selectedVideo != null) {
+      String videoPath = selectedVideo.path;
+
+      setState(() {
+        videoPaths.add(videoPath);
+
+        isFull = videoPaths.length >= 3 ? true : false;
+      });
+    }
   }
 
   @override
@@ -79,7 +93,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
               children: [
                 Image(
                   image: const AssetImage("assets/images/logo_square.png"),
-                  height: screenSize.height * 0.3,
+                  height: screenSize.height * 0.15,
                 ),
                 const SizedBox(
                   height: 20,
@@ -108,19 +122,38 @@ class _AlbumScreenState extends State<AlbumScreen> {
                           ),
                   ],
                 ),
-                hasPermission
-                    ? const Padding(
-                        padding: EdgeInsets.only(
-                          top: 180,
-                        ),
+                isFull
+                    ? const SizedBox(
                         child: Text(
-                          "Welcome to KrossCutting!",
+                          "You have already selected 3 or more videos",
                           style: TextStyle(
-                            fontSize: 28,
-                            fontFamily: "noteSansItalic",
+                            fontSize: 18,
+                            fontFamily: "notoSansItalic",
+                            fontWeight: FontWeight.w800,
+                            color: Color.fromARGB(255, 104, 224, 210),
                           ),
                         ),
                       )
+                    : const SizedBox(
+                        height: 18,
+                      ),
+                hasPermission
+                    ? videoPaths.isEmpty
+                        ? const Padding(
+                            padding: EdgeInsets.only(
+                              top: 200,
+                            ),
+                            child: Text(
+                              "Welcome to KrossCutting!",
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontFamily: "notoSansItalic",
+                              ),
+                            ),
+                          )
+                        : Expanded(
+                            child: ImbeddedAlbum(videoPathList: videoPaths),
+                          )
                     : Center(
                         child: GrantButton(
                           onClickGrantButton: onClickGrantButton,
@@ -181,7 +214,7 @@ class GrantButton extends StatelessWidget {
               "Get Permission",
               style: TextStyle(
                 fontSize: 30,
-                fontFamily: "noteSansItalic",
+                fontFamily: "notoSansItalic",
               ),
             ),
           ),
