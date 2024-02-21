@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/screens/home_page/home_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:krosscutting_app/screens/home_screen/home_screen.dart';
 import 'package:krosscutting_app/screens/permission_screen.dart';
 import 'package:krosscutting_app/screens/progress_screen.dart';
 import 'package:krosscutting_app/screens/splash_screen.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:krosscutting_app/screens/select_screen/selection_edit_horizontal.dart';
+import 'package:krosscutting_app/screens/select_screen/selection_edit_vertical.dart';
+import 'package:krosscutting_app/screens/select_screen/selection_start_horizontal.dart';
+import 'package:krosscutting_app/screens/select_screen/selection_start_vertical.dart';
 
 Future main() async {
   await dotenv.load();
@@ -23,6 +27,14 @@ class App extends StatelessWidget {
         "/permission": (context) => const PermissionScreen(),
         "/home": (context) => const HomeScreen(),
         "/progress": (context) => const ProgressScreen(),
+        "/selection/vertical/startpoint": (context) =>
+            const SelectionStartVertical(),
+        "/selection/horizontal/startpoint": (context) =>
+            const SelectionStartHorizontal(),
+        "/selection/vertical/editpoints": (context) =>
+            const SelectionVertical(),
+        "/selection/horizontal/editpoints": (context) =>
+            const SelectionHorizontal(),
       },
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(
