@@ -15,7 +15,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
   bool isFull = false;
   late List<String> videoPaths = [];
 
-//init State
   @override
   void initState() {
     super.initState();
@@ -24,7 +23,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
     isFull = videoPaths.length >= 3 ? true : false;
   }
 
-//checkPermission
   Future<void> _checkInitPermission() async {
     PermissionStatus currentStatus = await Permission.photos.status;
 
@@ -44,7 +42,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
     }
   }
 
-//Grant button click
   void onClickGrantButton() async {
     openAppSettings();
 
