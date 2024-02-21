@@ -74,10 +74,10 @@ flutter:
     - family: lobster
       fonts:
         - asset: assets/fonts/Lobster-Regular.ttf
-    - family: noteSansItalic
+    - family: notoSansItalic
       fonts:
         - asset: assets/fonts/NotoSans-Italic-VariableFont_wdth,wght.ttf
-    - family: noteSans
+    - family: notoSans
       fonts:
         - asset: assets/fonts/NotoSans-VariableFont_wdth,wght.ttf
 

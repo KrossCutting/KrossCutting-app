@@ -39,7 +39,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
-                fontFamily: "NoteSans",
+                fontFamily: "notoSans",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -63,7 +63,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
-                fontFamily: "NoteSans",
+                fontFamily: "notoSans",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -101,7 +101,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
-                fontFamily: "NoteSans",
+                fontFamily: "notoSans",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -168,7 +168,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
-                    fontFamily: "NoteSans",
+                    fontFamily: "notoSans",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
