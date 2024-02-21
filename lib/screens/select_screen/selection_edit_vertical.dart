@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+
 import 'package:krosscutting_app/widgets/logo_gradient_button.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
 import 'package:krosscutting_app/widgets/purple_overlap_gradient_icon_button.dart';
@@ -418,10 +419,10 @@ class VideoMarker extends CustomPainter {
     for (var marker in markerList) {
       final markerPosition =
           (marker.inMilliseconds / videoDuration.inMilliseconds) * size.width;
-      // 삼각형 마커를 그리기 위한 경로 생성
+
       Path path = Path();
-      double triangleSize = 10; // 삼각형의 크기, 필요에 따라 조정 가능
-      path.moveTo(markerPosition, 6); // 삼각형 꼭대기 지점
+      double triangleSize = 10;
+      path.moveTo(markerPosition, 6);
       path.lineTo(markerPosition - triangleSize, triangleSize * 2);
       path.lineTo(markerPosition + triangleSize, triangleSize * 2);
       path.close(); // 경로 닫기

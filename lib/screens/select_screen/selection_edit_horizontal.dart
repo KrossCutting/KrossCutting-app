@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+
 import 'package:krosscutting_app/widgets/logo_gradient_button.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
 import 'package:krosscutting_app/widgets/purple_overlap_gradient_icon_button.dart';
@@ -64,10 +65,9 @@ class _SelectionHorizontalState extends State<SelectionHorizontal> {
 
     if (markerList.isEmpty) return;
 
-    markerList.sort((a, b) => (a.inMilliseconds -
-            currentPosition.inMilliseconds)
-        .abs()
-        .compareTo((b.inMilliseconds - currentPosition.inMilliseconds).abs()));
+    markerList.sort((a, b) => (a.inMilliseconds - currentPosition.inMilliseconds)
+      .abs()
+      .compareTo((b.inMilliseconds - currentPosition.inMilliseconds).abs()));
 
     setState(() {
       markerList.removeAt(0);

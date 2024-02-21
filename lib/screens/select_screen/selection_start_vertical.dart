@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+
 import 'package:krosscutting_app/widgets/logo_gradient_button.dart';
 import 'package:krosscutting_app/widgets/green_gradient_icon_button.dart';
 import 'package:krosscutting_app/widgets/green_overlap_gradient_icon_button.dart';
@@ -379,8 +380,7 @@ class VideoMarker extends CustomPainter {
         ..style = PaintingStyle.fill;
 
       final markerPosition =
-          (marker!.inMilliseconds / videoDuration.inMilliseconds) *
-              size.width; // We've checked for null, so it's safe to use the !
+          (marker!.inMilliseconds / videoDuration.inMilliseconds) * size.width;
 
       Path path = Path();
       double triangleSize = 10;
