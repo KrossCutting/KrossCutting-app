@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         buttonText: "Vertical",
                         colorStyle: "purple",
                         isCoachMark: false,
-                        type: ButtonType.vertical,
+                        type: BUTTON_TYPE.VERTICAL,
                       ),
                       SizedBox(
                         height: 40,
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         buttonText: "Horizontal",
                         colorStyle: "yellow",
                         isCoachMark: false,
-                        type: ButtonType.horizontal,
+                        type: BUTTON_TYPE.HORIZONTAL,
                       ),
                     ],
                   ),

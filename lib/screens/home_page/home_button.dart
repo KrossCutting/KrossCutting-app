@@ -80,7 +80,7 @@ class HomeButton extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(45),
-                onTap: type == ButtonType.vertical
+                onTap: type == BUTTON_TYPE.VERTICAL
                     ? onVerticalClick
                     : onHorizontalClick,
               ),

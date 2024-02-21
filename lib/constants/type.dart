@@ -1,10 +1,10 @@
-class ButtonType {
-  static const String vertical = "vertical";
-  static const String horizontal = "horizontal";
+class BUTTON_TYPE {
+  static const String VERTICAL = "vertical";
+  static const String HORIZONTAL = "horizontal";
 }
 
-class VideoType {
-  static const Map main = {"key": "mainVideoPath", "name": "main"};
-  static const Map sub1 = {"key": "subOneVideoPath", "name": "subOne"};
-  static const Map sub2 = {"key": "subTwoVideoPath", "name": "subTwo"};
+class VIDEO_TYPE {
+  static const Map MAIN = {"key": "mainVideoFile", "buttonName": "main"};
+  static const Map SUB_ONE = {"key": "subOneVideoFile", "buttonName": "subOne"};
+  static const Map SUB_TWO = {"key": "subTwoVideoFile", "buttonName": "subTwo"};
 }
