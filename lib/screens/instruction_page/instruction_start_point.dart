@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:krosscutting_app/screens/instruction_page/instrunction_coach_mark.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
 import 'package:krosscutting_app/widgets/green_gradient_icon_button.dart';
+import 'package:krosscutting_app/widgets/purple_overlap_gradient_icon_button.dart';
 
 class InstructionStartPoint extends StatelessWidget {
   final List _containers = [
@@ -23,7 +24,7 @@ class InstructionStartPoint extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 75,
+            height: 70,
           ),
           Transform.translate(
             offset: const Offset(-43, 0),
@@ -81,6 +82,61 @@ class InstructionStartPoint extends StatelessWidget {
           ),
         ],
       ),
+    ),
+    Column(
+      children: [
+        const SizedBox(
+          height: 92,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const MovingIcon(
+              isVertical: false,
+              icon: Icon(
+                Icons.arrow_circle_right_outlined,
+                size: 70,
+              ),
+            ),
+            const SizedBox(
+              width: 30,
+            ),
+            buildPurpleOverlapGradientIconButton(
+              icon: Icons.arrow_forward,
+              onPressed: () {},
+            ),
+            const SizedBox(
+              width: 32,
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 80,
+        ),
+        const Text(
+          "Tap the icon to move\nedit point selection page",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+            fontFamily: "noteSans",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        const Text(
+          "The icon will appear\nonce a start point is selected\nfrom all the clips.",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontFamily: "noteSans",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
     ),
   ];
   InstructionStartPoint({super.key});

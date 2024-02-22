@@ -12,7 +12,7 @@ class InstructionEditPoint extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 350,
+            height: 334,
           ),
           const Text(
             "Each crosscut point you select\nwill be highlighted for 3 seconds",
@@ -113,7 +113,7 @@ class InstructionEditPoint extends StatelessWidget {
           Row(
             children: [
               const SizedBox(
-                width: 77,
+                width: 98,
               ),
               SizedBox(
                 width: 15,
@@ -186,7 +186,7 @@ class InstructionEditPoint extends StatelessWidget {
           Row(
             children: [
               const SizedBox(
-                width: 77,
+                width: 98,
               ),
               SizedBox(
                 width: 15,
@@ -201,7 +201,7 @@ class InstructionEditPoint extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 107,
+            height: 96,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
