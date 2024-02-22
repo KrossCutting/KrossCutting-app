@@ -47,16 +47,3 @@ class App extends StatelessWidget {
     );
   }
 }
-
-/** 민지님 분리해야하는 provider
- *
- * import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
- * ChangeNotifierProvider(
-      create: (context) => VideoManager([
-        // TODO. mockup 비디오 경로로, 모든 로직 구현 후 삭제합니다.
-        "assets/videos/aespaVertical_main.mp4",
-        "assets/videos/aespaVertical_One.mp4",
-        "assets/videos/aespaVertical_Two.mp4"
-      ]),
- */
-
