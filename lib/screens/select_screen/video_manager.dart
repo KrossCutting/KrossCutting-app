@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'dart:io';
 
 class VideoManager with ChangeNotifier {
   List<VideoPlayerController> controllers = [];
@@ -9,9 +10,30 @@ class VideoManager with ChangeNotifier {
   bool isEditPage = false;
   int currentIndex = 0;
 
-  VideoManager(List<String> videoFiles) {
+  VideoManager(List videoFiles) {
     for (var video in videoFiles) {
-      var controller = VideoPlayerController.asset(video)
+      var controller = VideoPlayerController.file(File(video))
+        ..initialize().then((_) {
+          notifyListeners();
+        });
+
+      controllers.add(controller);
+      startPoints.add([]);
+      editPoints.add([]);
+    }
+  }
+
+  void resetVideoFiles(List videoFiles) {
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+
+    controllers.clear();
+    startPoints.clear();
+    editPoints.clear();
+
+    for (var video in videoFiles) {
+      var controller = VideoPlayerController.file(File(video))
         ..initialize().then((_) {
           notifyListeners();
         });
