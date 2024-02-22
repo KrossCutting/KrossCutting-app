@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildGradientIconButton({
+Widget buildGreenGradientIconButton({
   required IconData icon,
   required VoidCallback onPressed,
 }) {
