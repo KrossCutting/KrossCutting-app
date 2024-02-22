@@ -1,109 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/screens/home_screen/home_button.dart';
-import 'package:krosscutting_app/screens/home_screen/home_carousel.dart';
-import 'package:krosscutting_app/screens/home_screen/home_coach_mark.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:flutter/widgets.dart';
+import 'package:krosscutting_app/screens/home_screen/home_button_dotted.dart';
+import 'package:krosscutting_app/screens/home_screen/home_button_green.dart';
+import 'package:krosscutting_app/screens/home_screen/home_button_peach.dart';
+import 'package:krosscutting_app/screens/home_screen/home_button_purple.dart';
 
-import 'package:krosscutting_app/constants/type.dart';
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  bool _isCoachMarkDisplayed = true;
-
-  void hideCoachMark() {
-    setState(() {
-      _isCoachMarkDisplayed = false;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
+      body: Center(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 150,
+            ),
+            const Image(
+              image: AssetImage("assets/images/logo_square.png"),
+              height: 150,
+            ),
+            const SizedBox(
+              height: 48,
+            ),
+            HomeButtonPurple(
+              icon: Ionicons.phone_landscape_outline,
+              onPressed: () {
+                Navigator.pushNamed(context, "/album");
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 120,
-                ),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      const HomeCarousel(),
-                      Transform.translate(
-                        offset: const Offset(0, -60),
-                        child: Row(
-                          children: [
-                            Stack(
-                              children: [
-                                Transform.translate(
-                                  offset: const Offset(40, 20),
-                                  child: const Text(
-                                    "How to kross-cut",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 40,
-                                        fontFamily: "lobster"),
-                                  ),
-                                ),
-                                Transform.translate(
-                                  offset: const Offset(10, 20),
-                                  child: SizedBox(
-                                    width: 45,
-                                    child: Image.asset(
-                                        "assets/images/icon_logo_mini.png"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                HomeButtonPeach(
+                  icon: Ionicons.phone_portrait_outline,
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/album");
+                  },
                 ),
                 const SizedBox(
-                  height: 80,
+                  width: 20,
                 ),
-                Transform.translate(
-                  offset: const Offset(0, -40),
-                  child: const Column(
-                    children: [
-                      HomeButton(
-                        buttonText: "Vertical",
-                        colorStyle: "purple",
-                        isCoachMark: false,
-                        type: BUTTON_TYPE.VERTICAL,
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      HomeButton(
-                        buttonText: "Horizontal",
-                        colorStyle: "yellow",
-                        isCoachMark: false,
-                        type: BUTTON_TYPE.HORIZONTAL,
-                      ),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    HomeButtonGreen(
+                      icon: Ionicons.sparkles_outline,
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/instruction/fileUpload");
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const HomeButtonDotted(
+                      icon: Ionicons.download_outline,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-          if (_isCoachMarkDisplayed)
-            HomeCoachMark(
-              onSkip: hideCoachMark,
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
