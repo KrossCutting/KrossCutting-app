@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildOverlapGradientIconButton({
+Widget buildGreenOverlapGradientIconButton({
   required IconData icon,
   required VoidCallback onPressed,
 }) {
