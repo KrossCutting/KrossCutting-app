@@ -26,7 +26,7 @@ class _ImbeddedAlbumState extends State<ImbeddedAlbum> {
     super.initState();
   }
 
-  void uploadFile(videoPathMap) async {
+  void uploadFile(videoPathMap, context) async {
     var url = Uri.parse("${dotenv.env["SERVER_HOST"]}/videos/contents/files");
     var request = http.MultipartRequest("POST", url);
 
@@ -49,7 +49,8 @@ class _ImbeddedAlbumState extends State<ImbeddedAlbum> {
     var response = await request.send();
 
     if (response.statusCode == 200) {
-      //TO DO: 네비게이터 Vertical Or Horizontal
+      //FIX ME: 연결되는 페이지의 전역상태 수정필요
+      Navigator.pushNamed(context, "/selection/startpoint");
     } else {
       //TO DO: 유저에게 안내
     }
@@ -77,7 +78,7 @@ class _ImbeddedAlbumState extends State<ImbeddedAlbum> {
             ? GradientButton(
                 buttonText: "NEXT",
                 onClick: () {
-                  uploadFile(videoPathMap);
+                  uploadFile(videoPathMap, context);
                 },
               )
             : const SizedBox(
