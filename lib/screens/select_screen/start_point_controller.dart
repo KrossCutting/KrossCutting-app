@@ -88,7 +88,6 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
 
                           for (var controller in videoManager.controllers) {
                             await controller.seekTo(Duration.zero);
-                            // await controller.pause();
                           }
 
                           Navigator.of(context)

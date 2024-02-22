@@ -3,7 +3,7 @@ import 'package:video_player/video_player.dart';
 
 class VideoManager with ChangeNotifier {
   List<VideoPlayerController> controllers = [];
-  List<List<Duration>> startPoints = []; // 시작점을 관리하는 리스트
+  List<List<Duration>> startPoints = [];
   List<List<Duration>> editPoints = [];
   List<String> titles = ["Main", "Sub 1", "Sub 2"];
   bool isEditPage = false;
@@ -39,9 +39,10 @@ class VideoManager with ChangeNotifier {
           content: const Text(
             "The starting point cannot exceed \n1 minute of the video.",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 17,
               color: Colors.white,
               fontWeight: FontWeight.bold,
+              fontFamily: "Montserrat",
             ),
             textAlign: TextAlign.center,
           ),
@@ -52,7 +53,7 @@ class VideoManager with ChangeNotifier {
             borderRadius: BorderRadius.circular(20),
           ),
           margin: const EdgeInsets.all(10),
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(10),
         ),
       );
 
