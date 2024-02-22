@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:krosscutting_app/screens/progress_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -9,7 +11,9 @@ import 'package:krosscutting_app/screens/home_screen/home_screen.dart';
 import 'package:krosscutting_app/screens/splash_screen.dart';
 import 'package:krosscutting_app/screens/select_screen/video_select_start_point.dart';
 import 'package:krosscutting_app/screens/select_screen/video_select_edit_points.dart';
-import 'package:krosscutting_app/screens/progress_screen.dart';
+import 'package:krosscutting_app/screens/instruction_page/instruction_edit_point.dart';
+import 'package:krosscutting_app/screens/instruction_page/instruction_file_upload.dart';
+import 'package:krosscutting_app/screens/instruction_page/instruction_start_point.dart';
 
 Future<void> main() async {
   await dotenv.load();
@@ -22,6 +26,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => VideoPathProvider()),
@@ -35,6 +42,9 @@ class App extends StatelessWidget {
           "/home": (context) => const HomeScreen(),
           "/selection/startpoint": (context) => const SelectStartPoint(),
           "/selection/editpoints": (context) => const SelectEditPoints(),
+          "/instruction/fileUpload": (context) => InstructionFileUpload(),
+          "/instruction/startPoint": (context) => InstructionStartPoint(),
+          "/instruction/editPoint": (context) => InstructionEditPoint(),
           "/progress": (context) => const ProgressScreen(),
         },
         theme: ThemeData(
