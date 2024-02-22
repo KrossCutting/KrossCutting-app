@@ -9,9 +9,6 @@ import 'package:krosscutting_app/screens/home_screen/home_button_purple.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-// TODO. 갤러리 선택페이지 연결
-  void noop() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +28,9 @@ class HomeScreen extends StatelessWidget {
             ),
             HomeButtonPurple(
               icon: Ionicons.phone_landscape_outline,
-              onPressed: noop,
+              onPressed: () {
+                Navigator.pushNamed(context, "/album");
+              },
             ),
             const SizedBox(
               height: 20,
@@ -42,7 +41,9 @@ class HomeScreen extends StatelessWidget {
               children: [
                 HomeButtonPeach(
                   icon: Ionicons.phone_portrait_outline,
-                  onPressed: noop,
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/album");
+                  },
                 ),
                 const SizedBox(
                   width: 20,
