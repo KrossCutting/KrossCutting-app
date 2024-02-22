@@ -37,7 +37,7 @@ class App extends StatelessWidget {
       ]),
       child: MaterialApp(
         title: "KrossCutting",
-        initialRoute: "//fileUpload",
+        initialRoute: "/",
         routes: {
           "/": (context) => const SplashScreen(),
           "/permission": (context) => const PermissionScreen(),
