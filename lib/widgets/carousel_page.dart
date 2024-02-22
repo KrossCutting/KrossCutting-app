@@ -30,7 +30,7 @@ class CarouselPage extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 25,
-                fontFamily: "noteSansItalic",
+                fontFamily: "notoSansItalic",
               ),
             ),
           ),
@@ -46,7 +46,7 @@ class CarouselPage extends StatelessWidget {
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
-                fontFamily: "noteSans",
+                fontFamily: "notoSans",
               ),
             ),
           ),

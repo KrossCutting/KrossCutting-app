@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:krosscutting_app/constants/type.dart';
 
 class HomeButton extends StatelessWidget {
   final String buttonText;
   final String colorStyle;
   final bool isCoachMark;
+  final String type;
 
   const HomeButton({
     super.key,
     required this.buttonText,
     required this.colorStyle,
     required this.isCoachMark,
+    required this.type,
   });
-
-  void onClick() {
-// To Do. 버튼 클릭시 전역 상태에 비디오 타입 전달 후 갤러리 선택 페이지로 이동 기능
-  }
 
   @override
   Widget build(BuildContext context) {
+    void onVerticalClick() {
+      //상태
+      Navigator.pushNamed(context, "/album");
+    }
+
+    void onHorizontalClick() {
+      //상태
+      Navigator.pushNamed(context, "/album");
+    }
+
     return Stack(
       children: [
         Container(
@@ -71,7 +80,9 @@ class HomeButton extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(45),
-                onTap: onClick,
+                onTap: type == BUTTON_TYPE.VERTICAL
+                    ? onVerticalClick
+                    : onHorizontalClick,
               ),
             ),
           )

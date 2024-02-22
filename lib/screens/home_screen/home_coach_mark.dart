@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:krosscutting_app/screens/home_screen/home_button.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
+import 'package:krosscutting_app/constants/type.dart';
 
 class HomeCoachMark extends StatefulWidget {
   final VoidCallback onSkip;
@@ -38,7 +39,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
-                fontFamily: "NoteSans",
+                fontFamily: "notoSans",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -62,7 +63,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
-                fontFamily: "NoteSans",
+                fontFamily: "notoSans",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -78,6 +79,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               buttonText: "Vertical",
               colorStyle: "purple",
               isCoachMark: true,
+              type: BUTTON_TYPE.VERTICAL,
             ),
           ],
         ),
@@ -99,7 +101,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
-                fontFamily: "NoteSans",
+                fontFamily: "notoSans",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -115,6 +117,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
               buttonText: "Horizontal",
               colorStyle: "yellow",
               isCoachMark: true,
+              type: BUTTON_TYPE.HORIZONTAL,
             ),
           ],
         ),
@@ -165,7 +168,7 @@ class _HomeCoachMarkState extends State<HomeCoachMark> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
-                    fontFamily: "NoteSans",
+                    fontFamily: "notoSans",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
