@@ -8,6 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:krosscutting_app/constants/type.dart';
 import 'package:krosscutting_app/provider/video_path_provider.dart';
 import 'package:krosscutting_app/widgets/gradient_button.dart';
+import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 
 class ImbeddedAlbum extends StatefulWidget {
   const ImbeddedAlbum({
@@ -49,11 +50,22 @@ class _ImbeddedAlbumState extends State<ImbeddedAlbum> {
     var response = await request.send();
 
     if (response.statusCode == 200) {
-      //FIX ME: 연결되는 페이지의 전역상태 수정필요
+      updateVideoManager(context);
+
       Navigator.pushNamed(context, "/selection/startpoint");
     } else {
       //TO DO: 유저에게 안내
     }
+  }
+
+  void updateVideoManager(BuildContext context) {
+    final videoPathProvider =
+        Provider.of<VideoPathProvider>(context, listen: false);
+
+    List selectedFiles = videoPathProvider.videoPath.values.toList();
+    final videoManager = Provider.of<VideoManager>(context, listen: false);
+
+    videoManager.resetVideoFiles(selectedFiles);
   }
 
   @override
