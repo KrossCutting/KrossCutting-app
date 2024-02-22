@@ -39,7 +39,7 @@ class InstructionStartPoint extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                buildGradientIconButton(
+                buildGreenGradientIconButton(
                   icon: Icons.auto_fix_high,
                   onPressed: () {},
                 ),
