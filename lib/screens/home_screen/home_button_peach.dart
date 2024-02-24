@@ -13,18 +13,19 @@ class HomeButtonPeach extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        width: 140,
-        height: 240,
+        width: 300,
+        height: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
           gradient: const LinearGradient(
             colors: [
-              Color.fromRGBO(83, 183, 235, 1),
+              Color.fromRGBO(242, 194, 125, 1),
+              Color.fromRGBO(234, 101, 128, 1),
               Color.fromRGBO(148, 95, 241, 1),
-              Color.fromRGBO(204, 204, 255, 1),
+              Color.fromRGBO(83, 183, 235, 1),
             ],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: Column(
@@ -39,9 +40,6 @@ class HomeButtonPeach extends StatelessWidget {
                 color: Colors.white,
                 size: 50,
               ),
-            ),
-            const SizedBox(
-              height: 16,
             ),
             const Text(
               "16 : 9",

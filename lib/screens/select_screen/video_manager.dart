@@ -149,6 +149,8 @@ class VideoManager with ChangeNotifier {
   }
 
   String get currentTitle => titles[currentIndex];
+  List<List<Duration>> get startPointList => startPoints;
+  List<List<Duration>> get editPointList => editPoints;
 
   @override
   void dispose() {

@@ -5,9 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:krosscutting_app/provider/video_path_provider.dart';
+import 'package:krosscutting_app/provider/video_direction_provider.dart';
 
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
-import 'package:krosscutting_app/screens/album_screen.dart';
+import 'package:krosscutting_app/screens/album_screen/album_screen.dart';
 import 'package:krosscutting_app/screens/home_screen/home_screen.dart';
 import 'package:krosscutting_app/screens/splash_screen.dart';
 import 'package:krosscutting_app/screens/select_screen/video_select_start_point.dart';
@@ -32,15 +33,9 @@ class App extends StatelessWidget {
 
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => VideoDirectionProvider()),
         ChangeNotifierProvider(create: (context) => VideoPathProvider()),
-        ChangeNotifierProvider(create: (context) {
-          final videoPathProvider =
-              Provider.of<VideoPathProvider>(context, listen: false);
-
-          final selectedPaths = videoPathProvider.videoPath.values.toList();
-
-          return VideoManager(selectedPaths);
-        }),
+        ChangeNotifierProvider(create: (context) => VideoManager([])),
       ],
       child: MaterialApp(
         title: "KrossCutting",
