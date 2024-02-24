@@ -28,7 +28,6 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
   }
 
   void uploadFile(videoPathMap, context) async {
-    //TODO: endPoints | 수정 app/videos/contents/files
     var url = Uri.parse("${dotenv.env["SERVER_HOST"]}/videos/contents/files");
     var request = http.MultipartRequest("POST", url);
 
@@ -50,9 +49,8 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
 
     var response = await request.send();
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       updateVideoManager(context);
-      Navigator.pushNamed(context, "/selection/startpoint");
     } else {
       //TODO: 유저에게 안내
     }
@@ -90,6 +88,7 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
             ? GradientButton(
                 buttonText: "NEXT",
                 onClick: () {
+                  Navigator.pushNamed(context, "/selection/startpoint");
                   uploadFile(videoPathMap, context);
                 },
               )
