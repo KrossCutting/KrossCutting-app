@@ -35,14 +35,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => VideoDirectionProvider()),
         ChangeNotifierProvider(create: (context) => VideoPathProvider()),
-        ChangeNotifierProvider(create: (context) {
-          final videoPathProvider =
-              Provider.of<VideoPathProvider>(context, listen: false);
-
-          final selectedPaths = videoPathProvider.videoPath.values.toList();
-
-          return VideoManager(selectedPaths);
-        }),
+        ChangeNotifierProvider(create: (context) => VideoManager([])),
       ],
       child: MaterialApp(
         title: "KrossCutting",
