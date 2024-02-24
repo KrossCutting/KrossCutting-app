@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:krosscutting_app/widgets/imbedded_album.dart';
+import 'package:krosscutting_app/screens/album_screen/embedded_album.dart';
+import 'package:krosscutting_app/screens/album_screen/grant_button.dart';
 
 class AlbumScreen extends StatefulWidget {
   const AlbumScreen({super.key});
@@ -100,7 +101,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
                   ],
                 ),
                 hasPermission
-                    ? const ImbeddedAlbum()
+                    ? const EmbeddedAlbum()
                     : Center(
                         child: GrantButton(
                           onClickGrantButton: onClickGrantButton,
@@ -111,62 +112,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class GrantButton extends StatelessWidget {
-  final Function()? onClickGrantButton;
-
-  const GrantButton({
-    super.key,
-    this.onClickGrantButton,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(
-          height: 100,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(45),
-            border: const Border(
-              top: BorderSide(
-                color: Colors.purple,
-                width: 2.0,
-              ),
-              bottom: BorderSide(
-                color: Colors.purple,
-                width: 2.0,
-              ),
-              left: BorderSide(
-                color: Colors.purple,
-                width: 2.0,
-              ),
-              right: BorderSide(
-                color: Colors.purple,
-                width: 2.0,
-              ),
-            ),
-          ),
-          child: TextButton(
-            onPressed: onClickGrantButton,
-            child: const Text(
-              "Get Permission",
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: "notoSansItalic",
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
