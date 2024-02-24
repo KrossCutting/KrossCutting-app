@@ -49,10 +49,8 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
 
     var response = await request.send();
 
-    if (response.statusCode == 201) {
-      updateVideoManager(context);
-    } else {
-      //TODO: 유저에게 안내
+    if (response.statusCode != 201) {
+      print("응답에러발생");
     }
   }
 
@@ -88,6 +86,7 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
             ? GradientButton(
                 buttonText: "NEXT",
                 onClick: () {
+                  updateVideoManager(context);
                   Navigator.pushNamed(context, "/selection/startpoint");
                   uploadFile(videoPathMap, context);
                 },
