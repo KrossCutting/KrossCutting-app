@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 Widget buildPurpleGradientIconButton({
   required IconData icon,
+  required double width,
+  required double height,
+  required double iconSize,
   required VoidCallback onPressed,
 }) {
   return InkWell(
     onTap: onPressed,
     child: Container(
-      width: 50,
-      height: 50,
+      width: width,
+      height: height,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         gradient: LinearGradient(
@@ -28,7 +31,7 @@ Widget buildPurpleGradientIconButton({
         child: Icon(
           icon,
           color: Colors.white,
-          size: 30,
+          size: iconSize,
         ),
       ),
     ),
