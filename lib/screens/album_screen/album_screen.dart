@@ -57,6 +57,24 @@ class _AlbumScreenState extends State<AlbumScreen> {
     Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushNamed(context, "/home");
+          },
+        ),
+        title: const Text(
+          "Select Videos",
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.restart_alt_rounded),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -67,38 +85,14 @@ class _AlbumScreenState extends State<AlbumScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image(
-                  image: const AssetImage("assets/images/logo_square.png"),
-                  height: screenSize.height * 0.2,
-                ),
-                SizedBox(
-                  height: screenSize.height * 0.1,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.white,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        "Choose videos",
-                        style: TextStyle(
-                          fontSize: screenSize.height * 0.04,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                      width: 40,
-                    ),
-                  ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  child: Image(
+                    image:
+                        const AssetImage("assets/images/white_logo_square.png"),
+                    height: screenSize.height * 0.2,
+                  ),
                 ),
                 hasPermission
                     ? const EmbeddedAlbum()
