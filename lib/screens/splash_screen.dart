@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Align(
             alignment: Alignment.center,
             child: Image(
-              image: AssetImage("assets/images/logo_square.png"),
+              image: AssetImage("assets/images/white_logo_square.png"),
               width: 500,
               height: 500,
             ),
