@@ -118,6 +118,8 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                     icon: Icons.arrow_back_rounded,
                     onPressed: () {
                       videoManager.setEditPage(false);
+                      videoManager
+                          .setCurrentIndex(videoManager.controllers.length - 1);
                       Navigator.of(context).pop();
                     },
                   ),
@@ -127,11 +129,11 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                     style: const TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.w600,
-                      fontFamily: "lobster",
+                      fontFamily: "natoSans",
                       shadows: [
                         Shadow(
                           color: Colors.black,
-                          blurRadius: 1.0,
+                          blurRadius: 2.0,
                           offset: Offset(0.1, 2.0),
                         )
                       ],
@@ -278,7 +280,10 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   buildPurpleGradientIconButton(
-                    icon: Icons.auto_fix_high,
+                    icon: Icons.cut_rounded,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       final currentPosition = controller.value.position;
 
@@ -287,12 +292,18 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                   ),
                   buildPurpleGradientIconButton(
                     icon: Icons.restore,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       videoManager.resetMarkerList();
                     },
                   ),
                   buildPurpleGradientIconButton(
                     icon: Icons.highlight_remove,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       videoManager.deleteMarker(controller);
                     },
