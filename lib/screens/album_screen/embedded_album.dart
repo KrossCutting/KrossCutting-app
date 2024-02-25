@@ -32,19 +32,21 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
     var request = http.MultipartRequest("POST", url);
 
     for (var videoPathKey in videoPathMap.keys) {
-      File file = File(videoPathMap[videoPathKey]);
+      if (videoPathMap[videoPathKey] != null) {
+        File file = File(videoPathMap[videoPathKey]);
 
-      if (!await file.exists()) {
-        continue;
+        if (!await file.exists()) {
+          continue;
+        }
+
+        var multipartFile = http.MultipartFile.fromBytes(
+          videoPathKey,
+          await File(videoPathMap[videoPathKey]).readAsBytes(),
+          filename: videoPathMap[videoPathKey].split("/").last,
+        );
+
+        request.files.add(multipartFile);
       }
-
-      var multipartFile = http.MultipartFile.fromBytes(
-        videoPathKey,
-        await File(videoPathMap[videoPathKey]).readAsBytes(),
-        filename: videoPathMap[videoPathKey].split("/").last,
-      );
-
-      request.files.add(multipartFile);
     }
 
     var response = await request.send();
@@ -73,6 +75,7 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
 
     bool isAvailable =
         videoPathValues.where((value) => value != null).toList().length > 1;
+    bool isMainSelected = videoPathValues[0] != null;
 
     return Column(
       children: [
@@ -82,7 +85,7 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
         SizedBox(
           height: screenSize.height * 0.02,
         ),
-        isAvailable
+        isAvailable && isMainSelected
             ? GradientButton(
                 buttonText: "NEXT",
                 onClick: () {
