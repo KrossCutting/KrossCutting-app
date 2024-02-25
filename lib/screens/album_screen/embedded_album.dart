@@ -23,8 +23,6 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
   @override
   void initState() {
     super.initState();
-
-    Provider.of<VideoPathProvider>(context, listen: false).resetVideoPath();
   }
 
   void uploadFile(videoPathMap, context) async {

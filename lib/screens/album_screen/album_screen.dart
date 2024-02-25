@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
+import 'package:krosscutting_app/provider/video_path_provider.dart';
 import 'package:krosscutting_app/screens/album_screen/embedded_album.dart';
 import 'package:krosscutting_app/screens/album_screen/grant_button.dart';
 
@@ -62,6 +64,8 @@ class _AlbumScreenState extends State<AlbumScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
+            Provider.of<VideoPathProvider>(context, listen: false)
+                .resetVideoPath();
             Navigator.pushNamed(context, "/home");
           },
         ),
