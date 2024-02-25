@@ -11,8 +11,6 @@ import 'package:krosscutting_app/provider/video_direction_provider.dart';
 import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
-import 'package:krosscutting_app/widgets/purple_overlap_gradient_icon_button.dart';
-import 'package:krosscutting_app/widgets/green_overlap_gradient_icon_button.dart';
 
 class VideoControllerPage extends StatefulWidget {
   final int index;
