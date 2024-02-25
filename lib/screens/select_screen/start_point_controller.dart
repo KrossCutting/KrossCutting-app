@@ -34,7 +34,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushNamed(context, "/home");
+            Navigator.pushNamed(context, "/album");
           },
         ),
         title: GradientText(
@@ -42,7 +42,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w800,
-            fontFamily: "natoSans",
+            fontFamily: "notoSans",
             shadows: [
               Shadow(
                 color: Colors.black,
@@ -62,19 +62,6 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
         ),
         actions: <Widget>[
           if (isLastVideo && isStartPointsAllSelected)
-            // IconButton(
-            //     icon: const Icon(Icons.arrow_forward_rounded),
-            //     onPressed: () async {
-            //       videoManager.setEditPage(true);
-            //       videoManager.setCurrentIndex(0);
-
-            //       for (var controller in videoManager.controllers) {
-            //         await controller.seekTo(Duration.zero);
-            //       }
-
-            //       // Navigator.of(context).pushNamed("/selection/editpoints");
-            //     })
-
             IconButton(
               icon: const Icon(Icons.arrow_forward_rounded),
               onPressed: () async {
@@ -83,7 +70,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                   builder: (BuildContext context) {
                     return Center(
                       child: Container(
-                        height: 200, // 모달 높이 크기
+                        height: 200,
                         margin: const EdgeInsets.only(
                           left: 20,
                           right: 20,
@@ -92,7 +79,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.9),
                           borderRadius: const BorderRadius.all(
-                            Radius.circular(20), // 모달 전체 라운딩 처리
+                            Radius.circular(20),
                           ),
                         ),
                         child: Column(
@@ -120,15 +107,17 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                                 ),
                                 ElevatedButton(
                                   onPressed: () async {
-                                    Navigator.pop(context); // 모달창을 닫는다
+                                    Navigator.pop(context);
+
                                     videoManager.setEditPage(true);
                                     videoManager.setCurrentIndex(0);
+
                                     for (var controller
                                         in videoManager.controllers) {
                                       await controller.seekTo(Duration.zero);
                                     }
-                                    Navigator.of(context).pushNamed(
-                                        "/selection/editpoints"); // 페이지 이동
+                                    Navigator.of(context)
+                                        .pushNamed("/selection/editpoints");
                                   },
                                   child: const Text(
                                     "Yes",
@@ -143,8 +132,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                       ),
                     );
                   },
-                  backgroundColor:
-                      Colors.transparent, // 앱 <=> 모달의 여백 부분을 투명하게 처리
+                  backgroundColor: Colors.transparent,
                 );
               },
             ),
