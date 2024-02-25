@@ -31,16 +31,21 @@ class VideoManager with ChangeNotifier {
     controllers.clear();
     startPoints.clear();
     editPoints.clear();
+    currentIndex = 0;
 
     for (var video in videoFiles) {
-      var controller = VideoPlayerController.file(File(video))
-        ..initialize().then((_) {
-          notifyListeners();
-        });
+      if (video != null) {
+        var controller = VideoPlayerController.file(File(video))
+          ..initialize().then((_) {
+            notifyListeners();
+          });
 
-      controllers.add(controller);
-      startPoints.add([]);
-      editPoints.add([]);
+        controllers.add(controller);
+        startPoints.add([]);
+        editPoints.add([]);
+      }
+
+      notifyListeners();
     }
   }
 

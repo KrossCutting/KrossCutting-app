@@ -76,7 +76,11 @@ class _EditingStatus extends State<EditingStatus> {
       child: Text(
         textAlign: TextAlign.center,
         message,
-        style: const TextStyle(fontSize: 32, color: Colors.white),
+        style: const TextStyle(
+          fontSize: 32,
+          color: Colors.white,
+          fontFamily: "lobster",
+        ),
       ),
     );
   }

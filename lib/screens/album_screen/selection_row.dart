@@ -27,8 +27,8 @@ class _SelectionRowState extends State<SelectionRow> {
           Text(
             widget.type["buttonName"],
             style: TextStyle(
-              fontSize: screenSize.height * 0.04,
-            ),
+                fontSize: screenSize.height * 0.035,
+                fontWeight: FontWeight.w300),
           ),
           SelectButton(
             typeKey: widget.type["key"],

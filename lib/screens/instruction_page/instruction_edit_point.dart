@@ -56,6 +56,9 @@ class InstructionEditPoint extends StatelessWidget {
                 ),
                 buildPurpleGradientIconButton(
                   icon: Icons.auto_fix_high,
+                  width: 35,
+                  height: 35,
+                  iconSize: 30,
                   onPressed: () {},
                 ),
               ],
@@ -218,6 +221,9 @@ class InstructionEditPoint extends StatelessWidget {
               ),
               buildPurpleGradientIconButton(
                 icon: Icons.highlight_remove,
+                width: 35,
+                height: 35,
+                iconSize: 30,
                 onPressed: () {},
               ),
               const SizedBox(
