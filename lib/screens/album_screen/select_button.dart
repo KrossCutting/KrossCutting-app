@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:krosscutting_app/provider/video_path_provider.dart';
+import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
+import 'package:krosscutting_app/widgets/green_gradient_icon_button.dart';
 
 class SelectButton extends StatefulWidget {
   final String typeKey;
@@ -35,24 +37,28 @@ class _SelectButtonState extends State<SelectButton> {
     return isSelected
         ? Row(
             children: [
-              const Icon(
-                Icons.check_circle,
-                size: 40,
-                color: Colors.deepPurple,
+              buildPurpleGradientIconButton(
+                icon: Icons.check_rounded,
+                width: 35,
+                height: 35,
+                iconSize: 30,
+                onPressed: () {},
               ),
-              IconButton(
+              const SizedBox(
+                width: 15,
+              ),
+              buildGreenGradientIconButton(
+                icon: Icons.replay_rounded,
+                width: 35,
+                height: 35,
+                iconSize: 30,
                 onPressed: pickFiles,
-                icon: const Icon(
-                  Icons.replay_circle_filled_rounded,
-                  size: 40,
-                  color: Color.fromARGB(255, 30, 233, 209),
-                ),
               ),
             ],
           )
         : IconButton(
             icon: const Icon(
-              size: 40,
+              size: 35,
               Icons.video_collection_rounded,
             ),
             onPressed: pickFiles,

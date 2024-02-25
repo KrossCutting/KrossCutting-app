@@ -58,13 +58,13 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                   GradientText(
                     videoManager.currentTitle,
                     style: const TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "lobster",
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: "natoSans",
                       shadows: [
                         Shadow(
                           color: Colors.black,
-                          blurRadius: 1.0,
+                          blurRadius: 2.0,
                           offset: Offset(0.1, 2.0),
                         )
                       ],
@@ -189,7 +189,10 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   buildGreenGradientIconButton(
-                    icon: Icons.auto_fix_high,
+                    icon: Icons.cut_rounded,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       final currentPosition = controller.value.position;
 
@@ -198,6 +201,9 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                   ),
                   buildGreenGradientIconButton(
                     icon: Icons.restore,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       videoManager.resetMarkerList();
                     },
