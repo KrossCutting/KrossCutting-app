@@ -11,8 +11,6 @@ import 'package:krosscutting_app/provider/video_direction_provider.dart';
 import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
-import 'package:krosscutting_app/widgets/purple_overlap_gradient_icon_button.dart';
-import 'package:krosscutting_app/widgets/green_overlap_gradient_icon_button.dart';
 
 class VideoControllerPage extends StatefulWidget {
   final int index;
@@ -35,7 +33,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
     return finalSeconds;
   }
 
-  void clickGreenOverlapGradientIconButton(pointsData, direction) {
+  void clickNextIconButton(pointsData, direction) {
     postPoints(pointsData, direction);
     //여기에서 일정시간마다 GET요청을 보내는 함수를 실행합니다.
   }
@@ -66,16 +64,22 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
   }
 
   formattingPointsData(pointsData) {
+    print(pointsData);
+
     Map<String, int> startPointListMap = {
       "mainStartPoint": pointsData["startPointList"][0],
       "subOneStartPoint": pointsData["startPointList"][1],
-      "subTwoStartPoint": pointsData["startPointList"][2],
+      "subTwoStartPoint": pointsData["startPointList"].length >= 3
+          ? pointsData["startPointList"][2]
+          : 0,
     };
 
     Map<String, List> editPointListMap = {
       "mainEditPoint": pointsData["editPointList"][0],
       "subOneEditPoint": pointsData["editPointList"][1],
-      "subTwoEditPoint": pointsData["editPointList"][2],
+      "subTwoEditPoint": pointsData["editPointList"].length >= 3
+          ? pointsData["editPointList"][2]
+          : [],
     };
 
     Map<String, Map> result = {
@@ -96,95 +100,87 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          Chewie(
-            controller: ChewieController(
-              videoPlayerController: controller,
-              autoPlay: false,
-              looping: false,
-              showControls: false,
-            ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            videoManager.setEditPage(false);
+            videoManager.setCurrentIndex(videoManager.controllers.length - 1);
+
+            Navigator.of(context).pop();
+          },
+        ),
+        title: GradientText(
+          videoManager.currentTitle,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w800,
+            fontFamily: "natoSans",
+            shadows: [
+              Shadow(
+                color: Colors.black,
+                blurRadius: 2.0,
+                offset: Offset(0.1, 2.0),
+              )
+            ],
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 40,
-              ),
-              child: Row(
-                children: [
-                  buildPurpleOverlapGradientIconButton(
-                    icon: Icons.arrow_back_rounded,
-                    onPressed: () {
-                      videoManager.setEditPage(false);
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  const Spacer(),
-                  GradientText(
-                    videoManager.currentTitle,
-                    style: const TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "lobster",
-                      shadows: [
-                        Shadow(
-                          color: Colors.black,
-                          blurRadius: 1.0,
-                          offset: Offset(0.1, 2.0),
-                        )
-                      ],
-                    ),
-                    colors: const [
-                      Color.fromRGBO(83, 183, 235, 1),
-                      Color.fromRGBO(148, 95, 241, 1),
-                      Color.fromRGBO(162, 38, 243, 1),
-                      Color.fromRGBO(234, 101, 128, 1),
-                      Color.fromRGBO(242, 194, 125, 1),
-                    ],
-                    textAlign: TextAlign.center,
-                  ),
-                  const Spacer(),
-                  if (isLastVideo)
-                    buildGreenOverlapGradientIconButton(
-                      icon: Icons.arrow_forward_rounded,
-                      onPressed: () {
-                        List<List<Duration>> editPointListStatus =
-                            videoManager.editPointList;
-                        List<List<Duration>> startPointListStatus =
-                            videoManager.startPointList;
+          colors: const [
+            Color.fromRGBO(83, 183, 235, 1),
+            Color.fromRGBO(148, 95, 241, 1),
+            Color.fromRGBO(162, 38, 243, 1),
+            Color.fromRGBO(234, 101, 128, 1),
+            Color.fromRGBO(242, 194, 125, 1),
+          ],
+          textAlign: TextAlign.center,
+        ),
+        actions: <Widget>[
+          if (isLastVideo)
+            IconButton(
+                icon: const Icon(Icons.arrow_forward_rounded),
+                onPressed: () async {
+                  List<List<Duration>> editPointListStatus =
+                      videoManager.editPointList;
+                  List<List<Duration>> startPointListStatus =
+                      videoManager.startPointList;
 
-                        List<List<int>> editPointList =
-                            editPointListStatus.map((eachVideoEditPointList) {
-                          return eachVideoEditPointList.map((editPointTime) {
-                            return trimTimeStringToInt(
-                                editPointTime.toString());
-                          }).toList();
-                        }).toList();
+                  List<List<int>> editPointList =
+                      editPointListStatus.map((eachVideoEditPointList) {
+                    return eachVideoEditPointList.map((editPointTime) {
+                      return trimTimeStringToInt(editPointTime.toString());
+                    }).toList();
+                  }).toList();
 
-                        List<int> startPointList =
-                            startPointListStatus.map((eachVideoStartPointList) {
-                          return trimTimeStringToInt(
-                              eachVideoStartPointList[0].toString());
-                        }).toList();
+                  List<int> startPointList =
+                      startPointListStatus.map((eachVideoStartPointList) {
+                    return trimTimeStringToInt(
+                        eachVideoStartPointList[0].toString());
+                  }).toList();
 
-                        Map<String, List> pointsData = {
-                          "editPointList": editPointList,
-                          "startPointList": startPointList,
-                        };
+                  Map<String, List> pointsData = {
+                    "editPointList": editPointList,
+                    "startPointList": startPointList,
+                  };
 
-                        var pointResultData = formattingPointsData(pointsData);
+                  var pointResultData = formattingPointsData(pointsData);
 
-                        clickGreenOverlapGradientIconButton(
-                          pointResultData,
-                          videoDirection.direction,
-                        );
-                      },
-                    )
-                  else
-                    const SizedBox(width: 60),
-                ],
+                  clickNextIconButton(
+                    pointResultData,
+                    videoDirection.direction,
+                  );
+                })
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Chewie(
+              controller: ChewieController(
+                videoPlayerController: controller,
+                autoPlay: false,
+                looping: false,
+                aspectRatio: controller.value.aspectRatio,
+                showControls: false,
               ),
             ),
           ),
@@ -196,11 +192,14 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
 
   Widget _buildCustomController(BuildContext context,
       VideoPlayerController controller, VideoManager videoManager) {
-    return SafeArea(
+    var padding = MediaQuery.of(context).padding;
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: padding.bottom),
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          height: 300,
+          height: 250,
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -278,7 +277,10 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                 alignment: WrapAlignment.center,
                 children: [
                   buildPurpleGradientIconButton(
-                    icon: Icons.auto_fix_high,
+                    icon: Icons.cut_rounded,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       final currentPosition = controller.value.position;
 
@@ -287,12 +289,18 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                   ),
                   buildPurpleGradientIconButton(
                     icon: Icons.restore,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       videoManager.resetMarkerList();
                     },
                   ),
                   buildPurpleGradientIconButton(
                     icon: Icons.highlight_remove,
+                    width: 50,
+                    height: 50,
+                    iconSize: 30,
                     onPressed: () {
                       videoManager.deleteMarker(controller);
                     },

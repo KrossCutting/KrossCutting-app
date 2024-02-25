@@ -42,6 +42,9 @@ class InstructionStartPoint extends StatelessWidget {
                 ),
                 buildGreenGradientIconButton(
                   icon: Icons.auto_fix_high,
+                  width: 50,
+                  height: 50,
+                  iconSize: 30,
                   onPressed: () {},
                 ),
               ],

@@ -55,7 +55,7 @@ class App extends StatelessWidget {
           colorScheme: const ColorScheme.dark(
             surface: Colors.black,
           ),
-          fontFamily: "lobster",
+          fontFamily: "natoSans",
         ),
       ),
     );
