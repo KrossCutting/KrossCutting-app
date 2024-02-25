@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/screens/home_screen/home_screen.dart';
 
 class InstructionCoachMark extends StatefulWidget {
   final VoidCallback onSkip;
@@ -44,12 +43,9 @@ class _InstructionCoachMark extends State<InstructionCoachMark> {
           left: 5,
           child: TextButton(
             onPressed: () {
-              Navigator.pushAndRemoveUntil(
+              Navigator.popUntil(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-                (route) => false,
+                ModalRoute.withName('/home'),
               );
             },
             child: const Row(
@@ -64,7 +60,7 @@ class _InstructionCoachMark extends State<InstructionCoachMark> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
-                    fontFamily: "NoteSans",
+                    fontFamily: "notoSans",
                     fontWeight: FontWeight.w600,
                   ),
                 ),

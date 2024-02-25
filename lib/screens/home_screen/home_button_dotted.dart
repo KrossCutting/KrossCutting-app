@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:ionicons/ionicons.dart';
 
 class HomeButtonDotted extends StatelessWidget {
-  final IconData icon;
+  final Color color;
+  final VoidCallback onClick;
 
-  const HomeButtonDotted({super.key, required this.icon});
+  const HomeButtonDotted(
+      {super.key, required this.color, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +27,13 @@ class HomeButtonDotted extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 52,
-                color: Colors.grey[800],
+              IconButton(
+                onPressed: onClick,
+                icon: const Icon(
+                  Ionicons.download_outline,
+                ),
+                iconSize: 52,
+                color: color,
               ),
             ],
           ),

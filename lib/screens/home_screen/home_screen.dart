@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:flutter/widgets.dart';
+import 'package:krosscutting_app/provider/download_url_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:krosscutting_app/provider/video_direction_provider.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final videoDirection = Provider.of<VideoDirectionProvider>(context);
+    final downloadUrl = Provider.of<DownloadUrlProvider>(context).finalVideoUrl;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -61,15 +63,24 @@ class HomeScreen extends StatelessWidget {
                     HomeButtonGreen(
                       icon: Ionicons.sparkles_outline,
                       onPressed: () {
-                        Navigator.pushNamed(context, "/instruction/fileUpload");
+                        Navigator.pushNamed(
+                          context,
+                          "/instruction/fileUpload",
+                        );
                       },
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const HomeButtonDotted(
-                      icon: Ionicons.download_outline,
-                    ),
+                    HomeButtonDotted(
+                      onClick: downloadUrl == ""
+                          ? () {}
+                          : () =>
+                              Navigator.pushNamed(context, "/downloadScreen"),
+                      color: downloadUrl == ""
+                          ? Colors.grey[800]!
+                          : Colors.purpleAccent,
+                    )
                   ],
                 ),
               ],
