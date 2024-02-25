@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:krosscutting_app/constants/type.dart';
 
 class VideoPathProvider with ChangeNotifier {
-  final Map _videoPath = {
+  Map _videoPath = {
     VIDEO_TYPE.MAIN["key"]: null,
     VIDEO_TYPE.SUB_ONE["key"]: null,
     VIDEO_TYPE.SUB_TWO["key"]: null,
@@ -12,6 +12,14 @@ class VideoPathProvider with ChangeNotifier {
     _videoPath[videoPathKey] = videoPathValue;
 
     notifyListeners();
+  }
+
+  void resetVideoPath() {
+    _videoPath = {
+      VIDEO_TYPE.MAIN["key"]: null,
+      VIDEO_TYPE.SUB_ONE["key"]: null,
+      VIDEO_TYPE.SUB_TWO["key"]: null,
+    };
   }
 
   Map get videoPath => _videoPath;
