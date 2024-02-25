@@ -1,7 +1,13 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import "package:krosscutting_app/utils/utils.dart";
+import 'package:provider/provider.dart';
+
+import 'package:krosscutting_app/services/post_points.dart';
 import 'package:krosscutting_app/services/editing_status.dart';
+import 'package:krosscutting_app/provider/video_direction_provider.dart';
+import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 
 class ProgressScreen extends StatefulWidget {
   const ProgressScreen({super.key});
@@ -20,6 +26,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => executePostPoints());
     _timer = Timer.periodic(const Duration(milliseconds: _imageDisplayInterval),
         (timer) {
       setState(() {
@@ -78,6 +85,40 @@ class _ProgressScreenState extends State<ProgressScreen> {
       }
     }
     return widgets;
+  }
+
+  void executePostPoints() async {
+    final videoManager = Provider.of<VideoManager>(context, listen: false);
+    final videoDirection =
+        Provider.of<VideoDirectionProvider>(context, listen: false).direction;
+
+    List<List<Duration>> editPointListStatus = videoManager.editPointList;
+    List<List<Duration>> startPointListStatus = videoManager.startPointList;
+
+    List<List<int>> editPointList =
+        editPointListStatus.map((eachVideoEditPointList) {
+      return eachVideoEditPointList.map((editPointTime) {
+        return trimTimeStringToInt(editPointTime.toString());
+      }).toList();
+    }).toList();
+
+    List<int> startPointList =
+        startPointListStatus.map((eachVideoStartPointList) {
+      return trimTimeStringToInt(eachVideoStartPointList[0].toString());
+    }).toList();
+
+    Map<String, List> pointsData = {
+      "editPointList": editPointList,
+      "startPointList": startPointList,
+    };
+
+    var pointResultData = formattingPointsData(pointsData);
+
+    await postPoints(
+      context: context,
+      pointResultData: pointResultData,
+      direction: videoDirection,
+    );
   }
 
   @override
