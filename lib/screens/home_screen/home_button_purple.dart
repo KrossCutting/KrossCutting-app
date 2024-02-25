@@ -22,10 +22,10 @@ class HomeButtonPurple extends StatelessWidget {
               Positioned.fill(
                 child: AnimatedMeshGradient(
                   colors: const [
-                    Color.fromRGBO(147, 70, 255, 1),
-                    Color.fromRGBO(148, 95, 241, 1),
-                    Color.fromRGBO(204, 204, 255, 1),
-                    Color.fromRGBO(83, 183, 235, 1),
+                    Color.fromRGBO(189, 116, 244, 1),
+                    Color.fromRGBO(222, 179, 241, 1),
+                    Color.fromRGBO(236, 85, 148, 1),
+                    Color.fromRGBO(246, 155, 106, 1),
                   ],
                   options: AnimatedMeshGradientOptions(),
                 ),
