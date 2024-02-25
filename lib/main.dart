@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:krosscutting_app/screens/download_screen.dart';
 import 'package:krosscutting_app/screens/progress_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:krosscutting_app/provider/video_path_provider.dart';
 import 'package:krosscutting_app/provider/video_direction_provider.dart';
+import 'package:krosscutting_app/provider/download_url_provider.dart';
 
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:krosscutting_app/screens/album_screen/album_screen.dart';
@@ -36,6 +38,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => VideoDirectionProvider()),
         ChangeNotifierProvider(create: (context) => VideoPathProvider()),
         ChangeNotifierProvider(create: (context) => VideoManager([])),
+        ChangeNotifierProvider(create: (context) => DownloadUrlProvider()),
       ],
       child: MaterialApp(
         title: "KrossCutting",
@@ -50,6 +53,7 @@ class App extends StatelessWidget {
           "/instruction/startPoint": (context) => InstructionStartPoint(),
           "/instruction/editPoint": (context) => InstructionEditPoint(),
           "/progress": (context) => const ProgressScreen(),
+          "/downloadScreen": (context) => const DownloadScreen(),
         },
         theme: ThemeData(
           colorScheme: const ColorScheme.dark(
