@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:krosscutting_app/screens/home_screen/home_screen.dart';
+
 import 'package:krosscutting_app/screens/instruction_page/instrunction_coach_mark.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
@@ -251,12 +251,9 @@ class InstructionEditPoint extends StatelessWidget {
             ),
             InstructionCoachMark(
                 onSkip: () {
-                  Navigator.pushAndRemoveUntil(
+                  Navigator.popUntil(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                    (route) => false,
+                    ModalRoute.withName('/home'),
                   );
                 },
                 explainScreen: _containers),

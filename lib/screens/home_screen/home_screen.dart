@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 
-import 'package:krosscutting_app/provider/video_direction_provider.dart';
 import 'package:krosscutting_app/constants/type.dart';
+import 'package:krosscutting_app/provider/download_url_provider.dart';
+import 'package:krosscutting_app/provider/video_direction_provider.dart';
 import 'package:krosscutting_app/screens/home_screen/home_button_dotted.dart';
 import 'package:krosscutting_app/screens/home_screen/home_button_green.dart';
 import 'package:krosscutting_app/screens/home_screen/home_button_purple.dart';
@@ -15,6 +16,17 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final videoDirection = Provider.of<VideoDirectionProvider>(context);
+    final downloadUrl = Provider.of<DownloadUrlProvider>(context).finalVideoUrl;
+
+    VoidCallback? onClickAction;
+    Color buttonColor = Colors.grey[800]!;
+    bool isDownloadAvailable = false;
+
+    if (downloadUrl != "") {
+      onClickAction = () => Navigator.pushNamed(context, "/downloadScreen");
+      buttonColor = Colors.pink[300]!;
+      isDownloadAvailable = true;
+    }
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -66,8 +78,10 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const HomeButtonDotted(
-                        icon: Ionicons.download_outline,
+                      HomeButtonDotted(
+                        onClick: onClickAction ?? () {},
+                        color: buttonColor,
+                        isDownloadAvailable: isDownloadAvailable,
                       ),
                     ],
                   ),

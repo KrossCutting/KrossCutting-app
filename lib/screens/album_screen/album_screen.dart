@@ -66,7 +66,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
           onPressed: () {
             Provider.of<VideoPathProvider>(context, listen: false)
                 .resetVideoPath();
-            Navigator.pushNamed(context, "/home");
+            Navigator.pop(context);
           },
         ),
         title: const Text(

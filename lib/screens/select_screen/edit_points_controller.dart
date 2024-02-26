@@ -1,16 +1,14 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-import 'package:krosscutting_app/provider/video_direction_provider.dart';
-import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
+import 'package:krosscutting_app/screens/progress_screen.dart';
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
+import 'package:krosscutting_app/widgets/green_overlap_gradient_icon_button.dart';
+import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
 
 class VideoControllerPage extends StatefulWidget {
   final int index;
@@ -21,79 +19,9 @@ class VideoControllerPage extends StatefulWidget {
 }
 
 class _VideoControllerPageState extends State<VideoControllerPage> {
-  int trimTimeStringToInt(String timeString) {
-    String seconds = timeString.split(":").last;
-    int milliSeconds = int.parse(seconds.split(".").last);
-    int finalSeconds = int.parse(seconds.split(".").first);
-
-    if (milliSeconds > 500000) {
-      finalSeconds = finalSeconds + 1;
-    }
-
-    return finalSeconds;
-  }
-
-  void clickNextIconButton(pointsData, direction) {
-    postPoints(pointsData, direction);
-    //여기에서 일정시간마다 GET요청을 보내는 함수를 실행합니다.
-  }
-
-  Future<http.Response> postPoints(
-    pointResultData,
-    direction,
-  ) async {
-    String jsonEncodedData = json.encode(pointResultData);
-    var url = Uri.parse(
-        "${dotenv.env["SERVER_HOST"]}/videos/compilations/$direction");
-    var response = await http.post(
-      url,
-      headers: <String, String>{
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: jsonEncodedData,
-    );
-
-    if (response.statusCode == 201) {
-      print("편집작업종료");
-      //TODO: 편집작업완료
-    } else {
-      //TODO: 유저에게안내
-    }
-
-    return response;
-  }
-
-  formattingPointsData(pointsData) {
-    print(pointsData);
-
-    Map<String, int> startPointListMap = {
-      "mainStartPoint": pointsData["startPointList"][0],
-      "subOneStartPoint": pointsData["startPointList"][1],
-      "subTwoStartPoint": pointsData["startPointList"].length >= 3
-          ? pointsData["startPointList"][2]
-          : 0,
-    };
-
-    Map<String, List> editPointListMap = {
-      "mainEditPoint": pointsData["editPointList"][0],
-      "subOneEditPoint": pointsData["editPointList"][1],
-      "subTwoEditPoint": pointsData["editPointList"].length >= 3
-          ? pointsData["editPointList"][2]
-          : [],
-    };
-
-    Map<String, Map> result = {
-      "startPoints": startPointListMap,
-      "selectedEditPoints": editPointListMap,
-    };
-
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     final videoManager = Provider.of<VideoManager>(context);
-    final videoDirection = Provider.of<VideoDirectionProvider>(context);
     final controller = videoManager.controllers[widget.index];
     final isLastVideo =
         videoManager.currentIndex == videoManager.controllers.length - 1;
@@ -136,39 +64,20 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
         ),
         actions: <Widget>[
           if (isLastVideo)
-            IconButton(
-                icon: const Icon(Icons.arrow_forward_rounded),
-                onPressed: () async {
-                  List<List<Duration>> editPointListStatus =
-                      videoManager.editPointList;
-                  List<List<Duration>> startPointListStatus =
-                      videoManager.startPointList;
-
-                  List<List<int>> editPointList =
-                      editPointListStatus.map((eachVideoEditPointList) {
-                    return eachVideoEditPointList.map((editPointTime) {
-                      return trimTimeStringToInt(editPointTime.toString());
-                    }).toList();
-                  }).toList();
-
-                  List<int> startPointList =
-                      startPointListStatus.map((eachVideoStartPointList) {
-                    return trimTimeStringToInt(
-                        eachVideoStartPointList[0].toString());
-                  }).toList();
-
-                  Map<String, List> pointsData = {
-                    "editPointList": editPointList,
-                    "startPointList": startPointList,
-                  };
-
-                  var pointResultData = formattingPointsData(pointsData);
-
-                  clickNextIconButton(
-                    pointResultData,
-                    videoDirection.direction,
-                  );
-                })
+            buildGreenOverlapGradientIconButton(
+              icon: Icons.arrow_forward_rounded,
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProgressScreen(),
+                  ),
+                  (route) => false,
+                );
+              },
+            )
+          else
+            const SizedBox(width: 60),
         ],
       ),
       body: Column(

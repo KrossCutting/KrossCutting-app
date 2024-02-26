@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:krosscutting_app/screens/progress_screen.dart';
+import 'package:krosscutting_app/screens/select_screen/video_select_edit_points.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
@@ -98,7 +100,16 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ElevatedButton(
-                                  onPressed: () => Navigator.pop(context),
+                                  onPressed: () {
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ProgressScreen(),
+                                      ),
+                                      (route) => false,
+                                    );
+                                  },
                                   child: const Text(
                                     "No",
                                     style:
@@ -116,8 +127,14 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                                         in videoManager.controllers) {
                                       await controller.seekTo(Duration.zero);
                                     }
-                                    Navigator.of(context)
-                                        .pushNamed("/selection/editpoints");
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SelectEditPoints(),
+                                      ),
+                                      (route) => false,
+                                    );
                                   },
                                   child: const Text(
                                     "Yes",

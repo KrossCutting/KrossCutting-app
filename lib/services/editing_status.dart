@@ -16,8 +16,7 @@ class EditingStatus extends StatefulWidget {
 }
 
 class _EditingStatus extends State<EditingStatus> {
-  // To Do. 추후 서버 요청 레이턴시 수정 필요
-  static const int _statusRequestInterval = 5;
+  static const int _statusRequestInterval = 1;
 
   late Timer _timer;
   String _currentStatus = constants.PROGRESS_MESSAGE["START"] ?? "Loading";
@@ -32,12 +31,12 @@ class _EditingStatus extends State<EditingStatus> {
           (Timer t) async {
         String newStatus = await fetchProgressStatus();
 
-        if (newStatus != _currentStatus) {
+        if (newStatus == "complete") {
+          _timer.cancel();
+        } else {
           setState(() {
             _currentStatus = newStatus;
           });
-        } else {
-          _timer.cancel();
         }
       });
     }
@@ -52,8 +51,7 @@ class _EditingStatus extends State<EditingStatus> {
   Future<String> fetchProgressStatus() async {
     try {
       final response = await http
-          // 임의로 설정된 앤드포인트로 수정될 수 있음
-          .get(Uri.parse("${dotenv.env["SERVER_HOST"]}/app/verticalVideos"));
+          .get(Uri.parse("${dotenv.env["SERVER_HOST"]}/videos/compilations"));
 
       if (response.statusCode == 200) {
         final decodedBody = json.decode(response.body);
@@ -76,8 +74,13 @@ class _EditingStatus extends State<EditingStatus> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(
+        textAlign: TextAlign.center,
         message,
-        style: const TextStyle(fontSize: 32, color: Colors.white),
+        style: const TextStyle(
+          fontSize: 32,
+          color: Colors.white,
+          fontFamily: "lobster",
+        ),
       ),
     );
   }

@@ -26,6 +26,8 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+  <string>This app needs access to the photo library to save videos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>AccessToThePhotoLibraryIsRequiredForVideoCreation</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
