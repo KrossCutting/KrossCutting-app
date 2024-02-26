@@ -15,13 +15,17 @@ Map<String, Map<String, dynamic>> formattingPointsData(
   Map<String, int> startPointListMap = {
     "mainStartPoint": pointsData["startPointList"][0],
     "subOneStartPoint": pointsData["startPointList"][1],
-    "subTwoStartPoint": pointsData["startPointList"][2],
+    "subTwoStartPoint": pointsData["startPointList"].length >= 3
+        ? pointsData["startPointList"][2]
+        : 0,
   };
 
   Map<String, List> editPointListMap = {
     "mainEditPoint": pointsData["editPointList"][0],
     "subOneEditPoint": pointsData["editPointList"][1],
-    "subTwoEditPoint": pointsData["editPointList"][2],
+    "subTwoEditPoint": pointsData["editPointList"].length >= 3
+        ? pointsData["editPointList"][2]
+        : [],
   };
 
   return {

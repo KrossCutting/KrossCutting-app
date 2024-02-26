@@ -18,6 +18,16 @@ class HomeScreen extends StatelessWidget {
     final videoDirection = Provider.of<VideoDirectionProvider>(context);
     final downloadUrl = Provider.of<DownloadUrlProvider>(context).finalVideoUrl;
 
+    VoidCallback? onClickAction;
+    Color buttonColor = Colors.grey[800]!;
+    bool isDownloadAvailable = false;
+
+    if (downloadUrl != "") {
+      onClickAction = () => Navigator.pushNamed(context, "/downloadScreen");
+      buttonColor = Colors.pink[300]!;
+      isDownloadAvailable = true;
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -69,14 +79,10 @@ class HomeScreen extends StatelessWidget {
                         height: 20,
                       ),
                       HomeButtonDotted(
-                        onClick: downloadUrl == ""
-                            ? () {}
-                            : () =>
-                                Navigator.pushNamed(context, "/downloadScreen"),
-                        color: downloadUrl == ""
-                            ? Colors.grey[800]!
-                            : Colors.purpleAccent,
-                      )
+                        onClick: onClickAction ?? () {},
+                        color: buttonColor,
+                        isDownloadAvailable: isDownloadAvailable,
+                      ),
                     ],
                   ),
                 ],

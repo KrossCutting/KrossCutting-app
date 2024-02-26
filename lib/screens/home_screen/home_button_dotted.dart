@@ -6,9 +6,13 @@ import 'package:ionicons/ionicons.dart';
 class HomeButtonDotted extends StatelessWidget {
   final Color color;
   final VoidCallback onClick;
+  final bool isDownloadAvailable;
 
   const HomeButtonDotted(
-      {super.key, required this.color, required this.onClick});
+      {super.key,
+      required this.color,
+      required this.onClick,
+      required this.isDownloadAvailable});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,13 @@ class HomeButtonDotted extends StatelessWidget {
                 iconSize: 52,
                 color: color,
               ),
+              if (isDownloadAvailable)
+                const Text(
+                  "Download",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
             ],
           ),
         ),
