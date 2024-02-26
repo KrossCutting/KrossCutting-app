@@ -127,14 +127,6 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                                         in videoManager.controllers) {
                                       await controller.seekTo(Duration.zero);
                                     }
-                                    // Navigator.pushAndRemoveUntil(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) =>
-                                    //         const SelectEditPoints(),
-                                    //   ),
-                                    //   (route) => false,
-                                    // );
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                       builder: (context) =>
