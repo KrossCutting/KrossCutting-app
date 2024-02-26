@@ -8,7 +8,7 @@ class InstructionFileUpload extends StatelessWidget {
         child: Column(
       children: [
         const SizedBox(
-          height: 370,
+          height: 330,
         ),
         Transform.translate(
           offset: const Offset(-30, 0),
@@ -70,7 +70,7 @@ class InstructionFileUpload extends StatelessWidget {
           children: [
             const Center(
               child: Image(
-                image: AssetImage("assets/images/selectResource_1.png"),
+                image: AssetImage("assets/images/album_demo.png"),
               ),
             ),
             InstructionCoachMark(

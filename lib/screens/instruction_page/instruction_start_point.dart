@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:krosscutting_app/screens/instruction_page/instrunction_coach_mark.dart';
 import 'package:krosscutting_app/widgets/moving_icon.dart';
 import 'package:krosscutting_app/widgets/green_gradient_icon_button.dart';
-import 'package:krosscutting_app/widgets/purple_overlap_gradient_icon_button.dart';
 
 class InstructionStartPoint extends StatelessWidget {
   final List _containers = [
@@ -11,7 +10,7 @@ class InstructionStartPoint extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 427,
+            height: 478,
           ),
           const Text(
             "Tap the icon to select\nstart point for each clip",
@@ -41,7 +40,7 @@ class InstructionStartPoint extends StatelessWidget {
                   height: 30,
                 ),
                 buildGreenGradientIconButton(
-                  icon: Icons.auto_fix_high,
+                  icon: Icons.cut_rounded,
                   width: 50,
                   height: 50,
                   iconSize: 30,
@@ -86,37 +85,36 @@ class InstructionStartPoint extends StatelessWidget {
         ],
       ),
     ),
-    Column(
+    const Column(
       children: [
-        const SizedBox(
-          height: 92,
+        SizedBox(
+          height: 51,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const MovingIcon(
+            MovingIcon(
               isVertical: false,
               icon: Icon(
                 Icons.arrow_circle_right_outlined,
                 size: 70,
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: 30,
             ),
-            buildPurpleOverlapGradientIconButton(
-              icon: Icons.arrow_forward,
-              onPressed: () {},
+            Icon(
+              Icons.arrow_forward_rounded,
             ),
-            const SizedBox(
-              width: 32,
+            SizedBox(
+              width: 12,
             ),
           ],
         ),
-        const SizedBox(
+        SizedBox(
           height: 80,
         ),
-        const Text(
+        Text(
           "Tap the icon to move\nedit point selection page",
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -126,10 +124,10 @@ class InstructionStartPoint extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: 30,
         ),
-        const Text(
+        Text(
           "The icon will appear\nonce a start point is selected\nfrom all the clips.",
           textAlign: TextAlign.center,
           style: TextStyle(
