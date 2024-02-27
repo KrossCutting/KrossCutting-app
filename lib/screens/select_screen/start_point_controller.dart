@@ -127,13 +127,13 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                                         in videoManager.controllers) {
                                       await controller.seekTo(Duration.zero);
                                     }
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SelectEditPoints(),
-                                      fullscreenDialog:
-                                          true, // This disables the swipe back on iOS.
-                                    ));
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SelectEditPoints(),
+                                        fullscreenDialog: true,
+                                      ),
+                                    );
                                   },
                                   child: const Text(
                                     "Yes",
