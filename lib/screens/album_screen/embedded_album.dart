@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:krosscutting_app/screens/select_screen/video_select_start_point.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -88,7 +89,12 @@ class _EmbeddedAlbumState extends State<EmbeddedAlbum> {
                 buttonText: "NEXT",
                 onClick: () {
                   updateVideoManager(context);
-                  Navigator.pushNamed(context, "/selection/startpoint");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const SelectStartPoint(),
+                      fullscreenDialog: true,
+                    ),
+                  );
                   uploadFile(videoPathMap, context);
                 },
               )

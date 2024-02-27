@@ -1,14 +1,14 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:krosscutting_app/screens/progress_screen.dart';
-import 'package:krosscutting_app/screens/select_screen/video_select_edit_points.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
+import 'package:krosscutting_app/screens/progress_screen.dart';
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:krosscutting_app/widgets/green_gradient_icon_button.dart';
+import 'package:krosscutting_app/screens/select_screen/video_select_edit_points.dart';
+import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
 
 class VideoControllerPage extends StatefulWidget {
   final int index;
@@ -36,7 +36,7 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushNamed(context, "/album");
+            Navigator.pop(context);
           },
         ),
         title: GradientText(
@@ -127,13 +127,12 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
                                         in videoManager.controllers) {
                                       await controller.seekTo(Duration.zero);
                                     }
-                                    Navigator.pushAndRemoveUntil(
-                                      context,
+                                    Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             const SelectEditPoints(),
+                                        fullscreenDialog: true,
                                       ),
-                                      (route) => false,
                                     );
                                   },
                                   child: const Text(
