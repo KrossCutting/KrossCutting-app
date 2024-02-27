@@ -12,7 +12,7 @@ class InstructionEditPoint extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 334,
+            height: 385,
           ),
           const Text(
             "Each crosscut point you select\nwill be highlighted for 3 seconds",
@@ -55,9 +55,9 @@ class InstructionEditPoint extends StatelessWidget {
                   height: 30,
                 ),
                 buildPurpleGradientIconButton(
-                  icon: Icons.auto_fix_high,
-                  width: 35,
-                  height: 35,
+                  icon: Icons.cut_rounded,
+                  width: 50,
+                  height: 50,
                   iconSize: 30,
                   onPressed: () {},
                 ),
@@ -71,7 +71,7 @@ class InstructionEditPoint extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 395,
+            height: 444,
           ),
           const Text(
             "You can navigate\nto the crosscut point by tapping on the triangle",
@@ -90,7 +90,7 @@ class InstructionEditPoint extends StatelessWidget {
             children: [
               Container(
                 height: 3,
-                width: 360,
+                width: 320,
                 color: Colors.grey,
               ),
               Container(
@@ -144,7 +144,7 @@ class InstructionEditPoint extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 434,
+            height: 484,
           ),
           const Text(
             "To remove a crosscut\npoint, tap on the icon",
@@ -163,7 +163,7 @@ class InstructionEditPoint extends StatelessWidget {
             children: [
               Container(
                 height: 3,
-                width: 360,
+                width: 320,
                 color: Colors.grey,
               ),
               Container(
@@ -221,8 +221,8 @@ class InstructionEditPoint extends StatelessWidget {
               ),
               buildPurpleGradientIconButton(
                 icon: Icons.highlight_remove,
-                width: 35,
-                height: 35,
+                width: 50,
+                height: 50,
                 iconSize: 30,
                 onPressed: () {},
               ),
