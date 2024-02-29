@@ -13,10 +13,16 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _controller;
   late final Animation<double> _opacity;
   late final Animation<Offset> _position;
+  static const int SPLASH_SECONDS = 3;
 
   @override
   void initState() {
     super.initState();
+
+    Future.delayed(const Duration(seconds: SPLASH_SECONDS), () {
+      Navigator.of(context).pushReplacementNamed("/home");
+    });
+
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
@@ -32,11 +38,6 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _controller.forward();
-
-    Timer(
-      const Duration(seconds: 3),
-      () => Navigator.pushNamed(context, "/home"),
-    );
   }
 
   @override

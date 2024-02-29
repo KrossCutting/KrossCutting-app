@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
@@ -57,6 +58,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+    final videoPathProvider = Provider.of<VideoPathProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -75,7 +77,9 @@ class _AlbumScreenState extends State<AlbumScreen> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.restart_alt_rounded),
-            onPressed: () {},
+            onPressed: () {
+              videoPathProvider.resetVideoPath();
+            },
           ),
         ],
       ),

@@ -20,6 +20,8 @@ class VideoPathProvider with ChangeNotifier {
       VIDEO_TYPE.SUB_ONE["key"]: null,
       VIDEO_TYPE.SUB_TWO["key"]: null,
     };
+
+    notifyListeners();
   }
 
   Map get videoPath => _videoPath;

@@ -253,7 +253,7 @@ class InstructionEditPoint extends StatelessWidget {
                 onSkip: () {
                   Navigator.popUntil(
                     context,
-                    ModalRoute.withName('/home'),
+                    ModalRoute.withName("/home"),
                   );
                 },
                 explainScreen: _containers),
