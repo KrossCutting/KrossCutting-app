@@ -7,7 +7,6 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:krosscutting_app/screens/progress_screen.dart';
 import 'package:krosscutting_app/screens/select_screen/video_manager.dart';
 import 'package:krosscutting_app/widgets/purple_gradient_icon_button.dart';
-import 'package:krosscutting_app/widgets/green_overlap_gradient_icon_button.dart';
 import 'package:krosscutting_app/screens/select_screen/custom_video_progress_indicator.dart';
 
 class VideoControllerPage extends StatefulWidget {
@@ -64,14 +63,13 @@ class _VideoControllerPageState extends State<VideoControllerPage> {
         ),
         actions: <Widget>[
           if (isLastVideo)
-            buildGreenOverlapGradientIconButton(
-              icon: Icons.arrow_forward_rounded,
+            IconButton(
+              icon: const Icon(Icons.arrow_forward_rounded),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ProgressScreen(),
-                  ),
+                      builder: (context) => const ProgressScreen()),
                   (route) => false,
                 );
               },
