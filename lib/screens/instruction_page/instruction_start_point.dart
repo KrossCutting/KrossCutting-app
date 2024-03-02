@@ -5,75 +5,125 @@ import 'package:krosscutting_app/widgets/moving_icon.dart';
 import 'package:krosscutting_app/widgets/green_gradient_icon_button.dart';
 
 class InstructionStartPoint extends StatelessWidget {
-  final List _containers = [
-    Center(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 478,
-          ),
-          const Text(
-            "Tap the icon to select\nstart point for each clip",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontFamily: "noteSans",
-              fontWeight: FontWeight.w600,
+  const InstructionStartPoint({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+    final screenHeight = mediaQueryData.size.height;
+    final screenWidth = mediaQueryData.size.width;
+
+    final List containers = [
+      Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: screenHeight * 0.584,
             ),
-          ),
-          const SizedBox(
-            height: 70,
-          ),
-          Transform.translate(
-            offset: const Offset(-43, 0),
-            child: Column(
-              children: [
-                const MovingIcon(
-                  isVertical: true,
-                  icon: Icon(
-                    Icons.arrow_circle_down_rounded,
-                    size: 70,
+            Text(
+              "Tap the icon to select\nstart point for each clip",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: screenWidth * 0.07,
+                fontFamily: "noteSans",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.07,
+            ),
+            Transform.translate(
+              offset: Offset(screenWidth * -0.11, 0),
+              child: Column(
+                children: [
+                  MovingIcon(
+                    isVertical: true,
+                    icon: Icon(
+                      Icons.arrow_circle_down_rounded,
+                      size: screenHeight * 0.082,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                buildGreenGradientIconButton(
-                  icon: Icons.cut_rounded,
-                  width: 50,
-                  height: 50,
-                  iconSize: 30,
-                  onPressed: () {},
+                  SizedBox(
+                    height: screenHeight * 0.024,
+                  ),
+                  buildGreenGradientIconButton(
+                    icon: Icons.cut_rounded,
+                    width: screenHeight * 0.06,
+                    height: screenHeight * 0.06,
+                    iconSize: 30,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      const Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 250,
+            ),
+            Column(
+              children: [
+                MovingIcon(
+                  isVertical: false,
+                  icon: Icon(
+                    Icons.swipe_left_rounded,
+                    size: 90,
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              "Swipe the widget to\nproceed to the next clip",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+                fontFamily: "noteSans",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-    const Center(
-      child: Column(
+      Column(
         children: [
           SizedBox(
-            height: 250,
+            height: screenHeight * 0.063,
           ),
-          Column(
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               MovingIcon(
                 isVertical: false,
                 icon: Icon(
-                  Icons.swipe_left_rounded,
-                  size: 90,
+                  Icons.arrow_circle_right_outlined,
+                  size: 70,
                 ),
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              Icon(
+                Icons.arrow_forward_rounded,
+              ),
+              SizedBox(
+                width: 12,
               ),
             ],
           ),
-          SizedBox(
-            height: 50,
+          const SizedBox(
+            height: 80,
           ),
-          Text(
-            "Swipe the widget to\nproceed to the next clip",
+          const Text(
+            "Tap the icon to move\nedit point selection page",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -82,68 +132,23 @@ class InstructionStartPoint extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+          const SizedBox(
+            height: 30,
+          ),
+          const Text(
+            "The icon will appear\nonce a start point is selected\nfrom all the clips.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: "noteSans",
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ],
       ),
-    ),
-    const Column(
-      children: [
-        SizedBox(
-          height: 51,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            MovingIcon(
-              isVertical: false,
-              icon: Icon(
-                Icons.arrow_circle_right_outlined,
-                size: 70,
-              ),
-            ),
-            SizedBox(
-              width: 30,
-            ),
-            Icon(
-              Icons.arrow_forward_rounded,
-            ),
-            SizedBox(
-              width: 12,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 80,
-        ),
-        Text(
-          "Tap the icon to move\nedit point selection page",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 28,
-            fontFamily: "noteSans",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Text(
-          "The icon will appear\nonce a start point is selected\nfrom all the clips.",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: "noteSans",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ],
-    ),
-  ];
-  InstructionStartPoint({super.key});
+    ];
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -161,7 +166,7 @@ class InstructionStartPoint extends StatelessWidget {
                   "/instruction/editPoint",
                 );
               },
-              explainScreen: _containers,
+              explainScreen: containers,
             ),
           ],
         ),
